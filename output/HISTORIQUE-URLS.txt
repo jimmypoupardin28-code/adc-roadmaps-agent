@@ -1,2 +1,3 @@
 2026-05-30 20:32 | Gwendoline Hurtiger | https://jimmypoupardin28-code.github.io/adc-roadmaps-agent/output/feuille-de-route-gwendoline-hurtiger.html
 2026-05-30 21:04 | Gwendoline Hurtiger | https://roadmaps.jimmycorp.fit/output/gwendoline-hurtiger
+2026-05-30 21:12 | Antonin Duvivier | https://roadmaps.jimmycorp.fit/output/antonin-duvivier
