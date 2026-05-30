@@ -18,9 +18,6 @@ ANTHROPIC_API_BASE = "https://api.anthropic.com/v1"
 ADC_KEYWORDS = ["audit business avec poupardin", "audit business", "confirme : audit", "unknown"]
 ADC_EXCLUDE = ["mise en place", "lead magnet", "impromptu", "kretz", "forge academy", "revolia", "1-1", "appel 1"]
 
-FATHOM_KEY = os.environ["FATHOM_API_KEY"]
-ANTHROPIC_KEY = os.environ["ANTHROPIC_API_KEY"]
-
 HEADERS_FATHOM = {"X-Api-Key": FATHOM_KEY}
 HEADERS_ANTHROPIC = {
     "x-api-key": ANTHROPIC_KEY,
