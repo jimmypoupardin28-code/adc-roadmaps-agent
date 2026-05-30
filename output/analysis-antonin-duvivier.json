@@ -1,15 +1,16 @@
 {
   "niveau_chaleur": "chaud",
   "potentiel_laisse_table": [
-    "Ne pas avoir exploré sa stratégie de positionnement et niche précise sur les réseaux",
-    "Ne pas avoir défini son modèle économique cible (tarification, packages)",
-    "Ne pas avoir identifié ses sources de prospects en ligne vs présentiel"
+    "Pas d'exploration sur la stratégie de lancement prévue",
+    "Pas de clarification sur le budget marketing ou le CA visé en 6 mois",
+    "Pas de détail sur les types de clients idéaux (âge, niveau, CSP)",
+    "Pas de discussion sur le positionnement exact (généraliste vs spécialiste CrossFit)"
   ],
   "objections_cachees": [
-    "Peur de se disperser et de ne pas savoir par où commencer",
-    "Incertitude sur comment devenir visible rapidement",
-    "Doute sur la viabilité d'une offre en ligne dans son contexte de formation qui finit"
+    "Inexpérience probante en coaching professionnel (seulement 3-4 amis)",
+    "Pas encore diplômé, encore en formation",
+    "Risque de dilution entre présentiel salle, présentiel école et coaching en ligne"
   ],
-  "timing_r2": "Après la fin de sa formation (4 semaines). Envoyer un doc spécifique sur sa stratégie de lancement en ligne.",
-  "message_whatsapp": "Salut Antonin 👋 Super call ! J'ai bien compris ton enjeu : tu veux pas perdre de temps et lancer le coaching en ligne à 100% dès après ta formation. T'as raison de chercher à clarifier ta niche plutôt que de te disperser. Je te prépare un doc qui résume exactement ce qu'on peut faire ensemble. À bientôt pour le R2 ! 🚀"
+  "timing_r2": "5-7 jours, après qu'il ait finalisé son programme formation",
+  "message_whatsapp": "Salut Antonin 👋 Merci pour cet appel! J'ai bien compris que tu veux lancer ton coaching en ligne à 100% sans te noyer en proposant tout partout. J'ai préparé un doc qui va t'aider à valider ta niche et ta visibilité. Jette un œil et on en reparle la semaine prochaine pour construire ton plan d'action 💪"
 }
