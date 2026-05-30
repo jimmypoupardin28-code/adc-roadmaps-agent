@@ -16,7 +16,7 @@ import requests
 
 FATHOM_API_BASE = "https://api.fathom.ai/external/v1"
 ANTHROPIC_API_BASE = "https://api.anthropic.com/v1"
-ADC_KEYWORDS = ["audit business avec poupardin", "audit business", "confirmé : audit"]
+ADC_KEYWORDS = ["audit business avec poupardin", "audit business", "confirmé : audit", "unknown"]
 ADC_EXCLUDE = ["mise en place", "lead magnet", "impromptu", "kretz", "forge academy", "revolia", "1-1", "appel 1"]
 
 FATHOM_KEY = os.environ["FATHOM_API_KEY"]
