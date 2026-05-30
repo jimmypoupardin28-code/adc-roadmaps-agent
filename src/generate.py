@@ -475,12 +475,13 @@ def main():
     output_dir.mkdir(exist_ok=True)
     prenom_slug = ctx["prenom"].lower().replace(" ", "-")
     nom_slug = ctx["nom"].lower().replace(" ", "-")
-    filename = f"feuille-de-route-{prenom_slug}-{nom_slug}.html"
-    out_path = output_dir / filename
+    prospect_dir = output_dir / f"{prenom_slug}-{nom_slug}"
+    prospect_dir.mkdir(exist_ok=True)
+    out_path = prospect_dir / "index.html"
     out_path.write_text(html, encoding="utf-8")
     print(f"Fichier : {out_path}")
 
-    url_publique = f"https://roadmaps.jimmycorp.fit/output/{filename}"
+    url_publique = f"https://roadmaps.jimmycorp.fit/output/{prenom_slug}-{nom_slug}"
 
     url_path = output_dir / "DERNIERE-URL.txt"
     url_path.write_text(url_publique, encoding="utf-8")
