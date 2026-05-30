@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """
-AdC Roadmap Generator — v2 (Fathom API corrigée)
+AdC Roadmap Generator — v3
 """
 
 import argparse
 import json
 import os
 import re
-import sys
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote
@@ -35,7 +34,7 @@ def list_meetings(limit=20):
         f"{FATHOM_API_BASE}/meetings",
         headers=HEADERS_FATHOM,
         params={"limit": limit, "include_transcript": "true"},
-        timeout=15
+        timeout=30
     )
     r.raise_for_status()
     return r.json().get("items", [])
@@ -53,22 +52,22 @@ def find_latest_adc_meeting():
     for m in meetings:
         if is_adc_meeting(m):
             return m
-    raise ValueError("Aucun meeting AdC trouvé dans les 50 derniers.")
+    raise ValueError("Aucun meeting AdC trouve dans les 50 derniers.")
 
 
 def get_meeting_by_id(meeting_id):
     r = requests.get(
         f"{FATHOM_API_BASE}/meetings",
         headers=HEADERS_FATHOM,
-        params={"include_transcript": "true"},
-        timeout=15
+        params={"include_transcript": "true", "limit": 50},
+        timeout=30
     )
     r.raise_for_status()
     items = r.json().get("items", [])
     for m in items:
         if str(m.get("id", "")) == str(meeting_id):
             return m
-    raise ValueError(f"Meeting {meeting_id} non trouvé.")
+    raise ValueError(f"Meeting {meeting_id} non trouve.")
 
 
 def claude(prompt, system=None, max_tokens=6000):
@@ -92,61 +91,63 @@ def claude(prompt, system=None, max_tokens=6000):
 EXTRACTION_SYSTEM = """
 Tu es un assistant d'analyse de calls de vente. Tu lis un meeting Fathom et tu retournes
 UNIQUEMENT un JSON valide, sans markdown, sans backticks, sans commentaires.
+IMPORTANT : Pour le driver_emotionnel, utilise EXACTEMENT les mots du prospect, pas une paraphrase.
 """
 
 EXTRACTION_PROMPT = """
-Analyse ce meeting de vente pour L'Académie des Coachs.
+Analyse ce meeting de vente pour L'Academie des Coachs.
 
 MEETING DATA:
 {meeting_data}
 
 Retourne EXACTEMENT ce JSON :
 {{
-  "prenom": "Prénom du prospect",
+  "prenom": "Prenom du prospect",
   "nom": "Nom du prospect",
-  "driver_emotionnel": "Le mot/phrase exact que LE PROSPECT a employé pour décrire son objectif principal.",
+  "driver_emotionnel": "Le mot/phrase EXACT que LE PROSPECT a employe pour decrire son objectif. Ses mots verbatim, pas une paraphrase.",
   "point_a": {{
-    "ca_mensuel": "chiffre exact en euros ou non mentionné",
+    "ca_mensuel": "chiffre exact en euros ou non mentionne",
     "situation_actuelle": "2-3 phrases factuelles",
-    "deja_accompli": "ce qu'il a déjà fait",
-    "audience": "taille audience si mentionnée",
+    "deja_accompli": "ce qu'il a deja fait",
+    "audience": "taille audience si mentionnee",
     "offre_actuelle": "ce qu'il vend aujourd'hui",
-    "nb_clients": "nombre de clients actifs si mentionné"
+    "nb_clients": "nombre de clients actifs si mentionne"
   }},
   "point_b": {{
     "objectif_principal": "son objectif principal",
-    "delai": "délai visé ou non précisé",
+    "delai": "delai vise ou non precise",
     "vision_lifestyle": "ce qu'il veut vivre"
   }},
   "chantiers_raw": [
-    "Problème 1", "Problème 2", "Problème 3", "Problème 4",
-    "Problème 5", "Problème 6", "Problème 7", "Problème 8",
-    "Problème 9", "Problème 10", "Problème 11", "Problème 12"
+    "Probleme 1", "Probleme 2", "Probleme 3", "Probleme 4",
+    "Probleme 5", "Probleme 6", "Probleme 7", "Probleme 8",
+    "Probleme 9", "Probleme 10", "Probleme 11", "Probleme 12"
   ],
   "ca_level": "high ou low",
   "payment_plan": "ex 3x500 ou null",
   "objections_exprimees": ["objection 1", "objection 2"],
-  "mots_cles_prospect": ["mot 1", "mot 2"],
-  "niveau_chaleur": "chaud ou tiède ou froid",
-  "potentiel_laisse_table": ["point 1", "point 2", "point 3"],
-  "objections_cachees": ["objection 1", "objection 2", "objection 3"],
-  "timing_r2": "recommendation timing R2"
+  "mots_cles_prospect": ["mot technique ou expression specifique qu'il a utilisee"],
+  "niveau_chaleur": "chaud ou tiede ou froid",
+  "potentiel_laisse_table": ["point 1 ou le closer aurait pu aller plus loin", "point 2", "point 3"],
+  "objections_cachees": ["objection implicite 1", "objection implicite 2", "objection implicite 3"],
+  "timing_r2": "recommendation timing pour le R2",
+  "message_whatsapp": "Message WhatsApp personnalise a envoyer au prospect. Tutoiement. 4-6 lignes max. Mentionne un detail specifique du call pour montrer qu'on a ecoute. CTA clair pour lire le doc. Pas de flagornerie. Termine par une phrase sur le R2."
 }}
 """
 
 CHANTIER_SYSTEM = """
-Tu es expert en copywriting de vente premium. Tu reformules des problèmes en questions ouvertes
-qui créent de la tension sans donner la solution.
-Règle absolue : si le prospect peut résoudre seul après avoir lu la ligne, c'est mal écrit.
+Tu es expert en copywriting de vente premium. Tu reformules des problemes en questions ouvertes
+qui creent de la tension sans donner la solution.
+Regle absolue : si le prospect peut resoudre seul apres avoir lu la ligne, c'est mal ecrit.
 Retourne UNIQUEMENT un JSON valide, sans markdown.
 """
 
 CHANTIER_PROMPT = """
-Driver émotionnel : "{driver}"
-Problèmes bruts :
+Driver emotionnel : "{driver}"
+Problemes bruts :
 {chantiers_raw}
 
-Regroupe en 4 phases de 3 items. Chaque item = question ouverte ou problème non résolu. JAMAIS de solution.
+Regroupe en 4 phases de 3 items. Chaque item = question ouverte ou probleme non resolu. JAMAIS de solution.
 
 Format JSON :
 {{
@@ -154,7 +155,7 @@ Format JSON :
     {{
       "titre": "Titre court 3-5 mots",
       "items": ["question 1", "question 2", "question 3"],
-      "outcome": "Ce qui change émotionnellement quand c'est réglé. 2 phrases max."
+      "outcome": "Ce qui change emotionnellement quand c'est regle. 2 phrases max."
     }}
   ]
 }}
@@ -162,11 +163,11 @@ Format JSON :
 
 
 def extract_context(meeting):
-    meeting_text = json.dumps(meeting, ensure_ascii=False)[:8000]
+    meeting_text = json.dumps(meeting, ensure_ascii=False)[:15000]
     raw = claude(
         EXTRACTION_PROMPT.format(meeting_data=meeting_text),
         system=EXTRACTION_SYSTEM,
-        max_tokens=2000,
+        max_tokens=2500,
     )
     raw = re.sub(r"```json|```", "", raw).strip()
     return json.loads(raw)
@@ -192,30 +193,30 @@ def build_html(ctx, phases):
     ca_level = ctx["ca_level"]
     payment_plan = ctx.get("payment_plan")
 
-    wa_msg = f"Bonjour, c'est {prenom}. J'ai lu ma feuille de route et je veux échanger."
+    wa_msg = f"Bonjour, c'est {prenom}. J'ai lu ma feuille de route et je veux echanger."
     wa_url = f"https://wa.me/33756288802?text={quote(wa_msg)}"
 
     if ca_level == "high":
-        featured_price, featured_label = "5 000€", "Accompagnement complet"
-        featured_features = ["Plateforme + Slack + Lives", "3 mois de suivi 1-to-1", "Garantie 3-10k€/mois en 90 jours"]
-        alt_price, alt_label = "1 500€", "Accès plateforme"
+        featured_price, featured_label = "5 000EUR", "Accompagnement complet"
+        featured_features = ["Plateforme + Slack + Lives", "3 mois de suivi 1-to-1", "Garantie 3-10k EUR/mois en 90 jours"]
+        alt_price, alt_label = "1 500EUR", "Acces plateforme"
         alt_features = ["Plateforme + Slack + Lives", "Sans suivi 1-to-1", "Sans garantie"]
     else:
-        featured_price, featured_label = "1 500€", "Accès plateforme"
+        featured_price, featured_label = "1 500EUR", "Acces plateforme"
         featured_features = ["Plateforme + Slack + Lives", "Upgrade possible", "Sans suivi 1-to-1"]
-        alt_price, alt_label = "5 000€", "Accompagnement complet"
-        alt_features = ["Plateforme + Slack + Lives", "3 mois de suivi 1-to-1", "Garantie 3-10k€/mois en 90 jours"]
+        alt_price, alt_label = "5 000EUR", "Accompagnement complet"
+        alt_features = ["Plateforme + Slack + Lives", "3 mois de suivi 1-to-1", "Garantie 3-10k EUR/mois en 90 jours"]
 
     payment_html = f'<div class="payment-plan"><span class="payment-badge">Plan convenu</span><p>Paiement en {payment_plan}</p></div>' if payment_plan else '<p class="payment-note">Plans 3-4 fois disponibles sur les deux formules.</p>'
 
     diag_rows = ""
     for key, val in [
-        ("CA mensuel actuel", pa.get("ca_mensuel", "Non mentionné")),
-        ("Offre actuelle", pa.get("offre_actuelle", "Non mentionné")),
-        ("Clients actifs", pa.get("nb_clients", "Non mentionné")),
-        ("Audience", pa.get("audience", "Non mentionné")),
-        ("Objectif", pb.get("objectif_principal", "Non mentionné")),
-        ("Délai visé", pb.get("delai", "Non précisé")),
+        ("CA mensuel actuel", pa.get("ca_mensuel", "Non mentionne")),
+        ("Offre actuelle", pa.get("offre_actuelle", "Non mentionne")),
+        ("Clients actifs", pa.get("nb_clients", "Non mentionne")),
+        ("Audience", pa.get("audience", "Non mentionne")),
+        ("Objectif", pb.get("objectif_principal", "Non mentionne")),
+        ("Delai vise", pb.get("delai", "Non precise")),
     ]:
         diag_rows += f'<tr><td class="diag-key">{key}</td><td class="diag-val">{val}</td></tr>'
 
@@ -231,7 +232,7 @@ def build_html(ctx, phases):
           </div>
           <ul class="phase-items">{items_html}</ul>
           <div class="outcome-block">
-            <p class="outcome-header">Quand c'est réglé</p>
+            <p class="outcome-header">Quand c'est regle</p>
             <p class="outcome-text">{phase['outcome']}</p>
           </div>
         </div>"""
@@ -244,7 +245,7 @@ def build_html(ctx, phases):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feuille de route — {prenom} {nom}</title>
+<title>Feuille de route - {prenom} {nom}</title>
 <style>
   :root {{
     --red: #C0272D; --red-soft: rgba(192,39,45,0.15); --red-glow: rgba(192,39,45,0.35);
@@ -272,7 +273,7 @@ def build_html(ctx, phases):
   .section-title em {{ font-style: normal; color: var(--red); }}
   .vision-list {{ list-style: none; margin-bottom: 32px; }}
   .vision-list li {{ padding: 14px 0; border-bottom: 1px solid var(--glass-border); font-size: 14px; display: flex; align-items: flex-start; gap: 12px; }}
-  .vision-list li::before {{ content: '→'; color: var(--red); font-size: 12px; margin-top: 2px; flex-shrink: 0; }}
+  .vision-list li::before {{ content: 'to'; color: var(--red); font-size: 12px; margin-top: 2px; flex-shrink: 0; }}
   .diag-table {{ width: 100%; border-collapse: collapse; margin-bottom: 32px; }}
   .diag-table tr {{ border-bottom: 1px solid var(--glass-border); }}
   .diag-key {{ font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; padding: 12px 0; width: 45%; vertical-align: top; }}
@@ -309,7 +310,7 @@ def build_html(ctx, phases):
   .offer-label {{ font-size: 12px; color: var(--muted); margin-bottom: 16px; }}
   .offer-features {{ list-style: none; }}
   .offer-features li {{ font-size: 13px; padding: 6px 0 6px 16px; position: relative; }}
-  .offer-features li::before {{ content: '✓'; position: absolute; left: 0; color: var(--red); font-size: 11px; }}
+  .offer-features li::before {{ content: 'v'; position: absolute; left: 0; color: var(--red); font-size: 11px; }}
   .payment-plan {{ background: var(--red-soft); border: 1px solid var(--red-glow); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; display: flex; gap: 12px; align-items: center; }}
   .payment-badge {{ font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); white-space: nowrap; }}
   .payment-plan p {{ font-size: 13px; margin: 0; }}
@@ -329,28 +330,28 @@ def build_html(ctx, phases):
 <div class="orb orb-2"></div>
 <div class="container">
   <header class="header">
-    <p class="header-tag">L'Académie des Coachs · Feuille de route</p>
-    <h1>Tout ce qu'il reste à régler pour atteindre <em>{driver}</em>.</h1>
-    <p class="header-sub">Pas un argumentaire. Voilà ce que j'ai retenu, voilà le chemin qu'il reste.</p>
+    <p class="header-tag">L'Academie des Coachs - Feuille de route</p>
+    <h1>Tout ce qu'il reste a regler pour atteindre <em>{driver}</em>.</h1>
+    <p class="header-sub">Pas un argumentaire. Voila ce que j'ai retenu, voila le chemin qu'il reste.</p>
   </header>
   <div class="glass-card">
-    <p><strong>Où tu en es.</strong> {pa.get('situation_actuelle', '')}</p>
-    <p><strong>Ce que tu as déjà prouvé.</strong> {pa.get('deja_accompli', '')}</p>
+    <p><strong>Ou tu en es.</strong> {pa.get('situation_actuelle', '')}</p>
+    <p><strong>Ce que tu as deja prouve.</strong> {pa.get('deja_accompli', '')}</p>
     <p>Ce doc, c'est le pont entre les deux. On en reparle au call.</p>
   </div>
   <section>
     <p class="section-tag">01</p>
-    <h2 class="section-title">Ton point B — <em>{driver}</em></h2>
+    <h2 class="section-title">Ton point B - <em>{driver}</em></h2>
     <ul class="vision-list">
       <li>{pb.get('objectif_principal', '')}</li>
       <li>{pb.get('vision_lifestyle', '')}</li>
-      <li>Un revenu qui tient sans que tu portes tout à bout de bras.</li>
-      <li>La liberté de choisir avec qui tu travailles — et pourquoi.</li>
+      <li>Un revenu qui tient sans que tu portes tout a bout de bras.</li>
+      <li>La liberte de choisir avec qui tu travailles - et pourquoi.</li>
     </ul>
   </section>
   <section>
     <p class="section-tag">02</p>
-    <h2 class="section-title">Ton point A — les faits.</h2>
+    <h2 class="section-title">Ton point A - les faits.</h2>
     <table class="diag-table">{diag_rows}</table>
   </section>
   <section>
@@ -360,35 +361,35 @@ def build_html(ctx, phases):
   </section>
   <section>
     <p class="section-tag">04</p>
-    <h2 class="section-title">L'écosystème AdC.</h2>
+    <h2 class="section-title">L'ecosysteme AdC.</h2>
     <div class="eco-grid">
-      <div class="eco-item"><span class="eco-icon">🎓</span><span class="eco-name">Plateforme</span><span class="eco-desc">Modules, templates, ressources</span></div>
-      <div class="eco-item"><span class="eco-icon">💬</span><span class="eco-name">Slack</span><span class="eco-desc">Communauté active</span></div>
-      <div class="eco-item"><span class="eco-icon">📡</span><span class="eco-name">Lives</span><span class="eco-desc">Sessions hebdo avec Maëlys</span></div>
-      <div class="eco-item"><span class="eco-icon">🤝</span><span class="eco-name">Partenaires</span><span class="eco-desc">Réseau et opportunités</span></div>
-      <div class="eco-item"><span class="eco-icon">⚡</span><span class="eco-name">Maëlys</span><span class="eco-desc">Accès direct, expertise terrain</span></div>
-      <div class="eco-item"><span class="eco-icon">🔥</span><span class="eco-name">Cohorte</span><span class="eco-desc">Promos actives, émulation</span></div>
+      <div class="eco-item"><span class="eco-icon">&#127891;</span><span class="eco-name">Plateforme</span><span class="eco-desc">Modules, templates, ressources</span></div>
+      <div class="eco-item"><span class="eco-icon">&#128172;</span><span class="eco-name">Slack</span><span class="eco-desc">Communaute active</span></div>
+      <div class="eco-item"><span class="eco-icon">&#128225;</span><span class="eco-name">Lives</span><span class="eco-desc">Sessions hebdo avec Maelys</span></div>
+      <div class="eco-item"><span class="eco-icon">&#129309;</span><span class="eco-name">Partenaires</span><span class="eco-desc">Reseau et opportunites</span></div>
+      <div class="eco-item"><span class="eco-icon">&#9889;</span><span class="eco-name">Maelys</span><span class="eco-desc">Acces direct, expertise terrain</span></div>
+      <div class="eco-item"><span class="eco-icon">&#128293;</span><span class="eco-name">Cohorte</span><span class="eco-desc">Promos actives, emulation</span></div>
     </div>
   </section>
   <section>
     <p class="section-tag">05</p>
-    <h2 class="section-title">Ce que ça donne — en chiffres.</h2>
+    <h2 class="section-title">Ce que ca donne - en chiffres.</h2>
     <div class="proofs-wrap">
       <ul class="proofs">
-        <li><span class="proof-name">Manon</span><span class="proof-val" data-target="150000">0€</span></li>
-        <li><span class="proof-name">Emmerick — janvier</span><span class="proof-val" data-target="15000">0€</span></li>
-        <li><span class="proof-name">Emmerick + équipe — février</span><span class="proof-val" data-target="19000">0€</span></li>
-        <li><span class="proof-name">Aurélie — 1 semaine</span><span class="proof-val" data-target="7000">0€</span></li>
-        <li><span class="proof-name">Nouvelle coach — 1 mois (0)</span><span class="proof-val" data-target="3300">0€</span></li>
+        <li><span class="proof-name">Manon</span><span class="proof-val" data-target="150000">0</span></li>
+        <li><span class="proof-name">Emmerick - janvier</span><span class="proof-val" data-target="15000">0</span></li>
+        <li><span class="proof-name">Emmerick + equipe - fevrier</span><span class="proof-val" data-target="19000">0</span></li>
+        <li><span class="proof-name">Aurelie - 1 semaine</span><span class="proof-val" data-target="7000">0</span></li>
+        <li><span class="proof-name">Nouvelle coach - 1 mois (0)</span><span class="proof-val" data-target="3300">0</span></li>
       </ul>
-      <a class="proofs-cta" href="https://drive.google.com/drive/folders/1fk6fHzGKUbFWrXez6Cm4EPabMdCrkd0V" target="_blank" rel="noopener">Voir tous les témoignages <span class="arrow">↗</span></a>
+      <a class="proofs-cta" href="https://drive.google.com/drive/folders/1fk6fHzGKUbFWrXez6Cm4EPabMdCrkd0V" target="_blank" rel="noopener">Voir tous les temoignages <span class="arrow">&#8599;</span></a>
     </div>
   </section>
   <section>
     <p class="section-tag">06</p>
-    <h2 class="section-title">Ton accès.</h2>
+    <h2 class="section-title">Ton acces.</h2>
     <div class="offer-featured">
-      <p class="offer-badge">Recommandé pour toi</p>
+      <p class="offer-badge">Recommande pour toi</p>
       <p class="offer-price">{featured_price}</p>
       <p class="offer-label">{featured_label}</p>
       <ul class="offer-features">{feat_html}</ul>
@@ -403,10 +404,10 @@ def build_html(ctx, phases):
   </section>
   <section class="closing">
     <h2 class="closing-title">Alors <em>{prenom}</em>, qu'est-ce que t'attends&nbsp;?</h2>
-    <p class="closing-body">Tu sais où t'en es. Tu sais où tu veux aller. Tu sais ce qu'il reste à régler.<br><br>Dans 6 mois, soit tu y es, soit t'es encore là à regarder le chemin.<br>La seule chose qui change : la décision que tu prends maintenant.</p>
-    <a href="{wa_url}" target="_blank" rel="noopener" class="cta-btn"><span>Je suis prêt, on lance</span><span>→</span></a>
+    <p class="closing-body">Tu sais ou t'en es. Tu sais ou tu veux aller. Tu sais ce qu'il reste a regler.<br><br>Dans 6 mois, soit tu y es, soit t'es encore la a regarder le chemin.<br>La seule chose qui change : la decision que tu prends maintenant.</p>
+    <a href="{wa_url}" target="_blank" rel="noopener" class="cta-btn"><span>Je suis pret, on lance</span><span>to</span></a>
   </section>
-  <footer class="footer"><p>L'Académie des Coachs · Document préparé pour {prenom} {nom}</p></footer>
+  <footer class="footer"><p>L'Academie des Coachs - Document prepare pour {prenom} {nom}</p></footer>
 </div>
 <script>
 const proofVals = document.querySelectorAll('.proof-val[data-target]');
@@ -418,7 +419,7 @@ const io = new IntersectionObserver((entries) => {{
       const step = (now) => {{
         const p = Math.min((now-start)/1400,1);
         const ease = 1-Math.pow(1-p,3);
-        e.target.textContent = Math.round(ease*target).toLocaleString('fr-FR')+'€';
+        e.target.textContent = Math.round(ease*target).toLocaleString('fr-FR') + 'EUR';
         if(p<1) requestAnimationFrame(step);
       }};
       requestAnimationFrame(step);
@@ -430,21 +431,6 @@ proofVals.forEach(el => io.observe(el));
 </script>
 </body>
 </html>"""
-
-
-def print_analysis(ctx):
-    print("\n" + "="*60)
-    print("ANALYSE POST-CALL")
-    print("="*60)
-    print(f"\n Chaleur : {ctx.get('niveau_chaleur','N/A').upper()}")
-    print("\n Potentiel laisse sur la table :")
-    for p in ctx.get("potentiel_laisse_table", []):
-        print(f"   . {p}")
-    print("\n Objections cachees a pre-traiter :")
-    for o in ctx.get("objections_cachees", []):
-        print(f"   . {o}")
-    print(f"\n Timing R2 : {ctx.get('timing_r2','N/A')}")
-    print("="*60 + "\n")
 
 
 def main():
@@ -473,15 +459,17 @@ def main():
 
     output_dir = Path(os.environ.get("OUTPUT_DIR", "output"))
     output_dir.mkdir(exist_ok=True)
+
     prenom_slug = ctx["prenom"].lower().replace(" ", "-")
     nom_slug = ctx["nom"].lower().replace(" ", "-")
+
     prospect_dir = output_dir / f"{prenom_slug}-{nom_slug}"
     prospect_dir.mkdir(exist_ok=True)
     out_path = prospect_dir / "index.html"
     out_path.write_text(html, encoding="utf-8")
     print(f"Fichier : {out_path}")
 
-    url_publique = f"https://roadmaps.jimmycorp.fit/output/{prenom_slug}-{nom_slug}"
+    url_publique = f"https://roadmaps.jimmycorp.fit/{prenom_slug}-{nom_slug}"
 
     url_path = output_dir / "DERNIERE-URL.txt"
     url_path.write_text(url_publique, encoding="utf-8")
@@ -491,16 +479,35 @@ def main():
     with open(historique_path, "a", encoding="utf-8") as f:
         f.write(ligne)
 
-    print(f"URL publique : {url_publique}")
-    print_analysis(ctx)
+    message_wa = ctx.get("message_whatsapp", "")
+    wa_path = output_dir / "DERNIER-MESSAGE-WA.txt"
+    wa_path.write_text(message_wa, encoding="utf-8")
 
-    analysis_path = output_dir / f"analysis-{prenom_slug}-{nom_slug}.json"
-    analysis_path.write_text(json.dumps({
+    analysis = {
         "niveau_chaleur": ctx.get("niveau_chaleur"),
         "potentiel_laisse_table": ctx.get("potentiel_laisse_table"),
         "objections_cachees": ctx.get("objections_cachees"),
         "timing_r2": ctx.get("timing_r2"),
-    }, ensure_ascii=False, indent=2))
+        "message_whatsapp": message_wa,
+    }
+    analysis_path = output_dir / f"analysis-{prenom_slug}-{nom_slug}.json"
+    analysis_path.write_text(json.dumps(analysis, ensure_ascii=False, indent=2))
+
+    print(f"URL publique : {url_publique}")
+    print(f"Message WA genere.")
+
+    print("\n" + "="*60)
+    print("ANALYSE POST-CALL")
+    print("="*60)
+    print(f"Chaleur : {ctx.get('niveau_chaleur','N/A').upper()}")
+    print(f"Timing R2 : {ctx.get('timing_r2','N/A')}")
+    print("Potentiel laisse sur la table :")
+    for p in ctx.get("potentiel_laisse_table", []):
+        print(f"  - {p}")
+    print("Objections cachees :")
+    for o in ctx.get("objections_cachees", []):
+        print(f"  - {o}")
+    print("="*60)
 
 
 if __name__ == "__main__":
