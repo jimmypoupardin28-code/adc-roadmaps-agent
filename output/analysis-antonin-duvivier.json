@@ -1,18 +1,15 @@
 {
   "niveau_chaleur": "chaud",
   "potentiel_laisse_table": [
-    "Pas d'exploration du CA actuel ou des tarifs pratiqués avec les 3-4 clients",
-    "Pas de clarification sur le timing exact de fin de formation et de lancement commercial",
-    "Pas d'approfondissement sur la stratégie réseaux sociaux (questions posées mais call coupée)",
-    "Pas de discussion sur le budget d'investissement pour L'Academie",
-    "Pas de validation de la motivation réelle pour le coaching en ligne vs présentiel"
+    "Ne pas avoir exploré sa stratégie de positionnement et niche précise sur les réseaux",
+    "Ne pas avoir défini son modèle économique cible (tarification, packages)",
+    "Ne pas avoir identifié ses sources de prospects en ligne vs présentiel"
   ],
   "objections_cachees": [
-    "Peur de se disperser et de noyer ses efforts sans vraie stratégie",
-    "Pas d'expérience réelle en prospection commerciale au-delà du cercle amical",
-    "Manque de visibilité/présence sur les réseaux (admission récente)",
-    "Timing serré : formation + certification + lancement activité simultanés"
+    "Peur de se disperser et de ne pas savoir par où commencer",
+    "Incertitude sur comment devenir visible rapidement",
+    "Doute sur la viabilité d'une offre en ligne dans son contexte de formation qui finit"
   ],
-  "timing_r2": "1 semaine après envoi du document d'onboarding, pour laisser le temps de réfléchir. Avant les examens si possible.",
-  "message_whatsapp": "Salut Antonin 👋 Merci pour cet appel, j'ai bien noté que tu veux vraiment pas perdre de temps et ça se comprend. Avec tes 3-4 clients actuels et ta formation qui finit bientôt, c'est le bon moment pour structurer. Je te partage un document avec notre approche pour les coachs qui commencent. Jette un œil et on en reparle pour affiner les détails du programme 💪"
+  "timing_r2": "Après la fin de sa formation (4 semaines). Envoyer un doc spécifique sur sa stratégie de lancement en ligne.",
+  "message_whatsapp": "Salut Antonin 👋 Super call ! J'ai bien compris ton enjeu : tu veux pas perdre de temps et lancer le coaching en ligne à 100% dès après ta formation. T'as raison de chercher à clarifier ta niche plutôt que de te disperser. Je te prépare un doc qui résume exactement ce qu'on peut faire ensemble. À bientôt pour le R2 ! 🚀"
 }
