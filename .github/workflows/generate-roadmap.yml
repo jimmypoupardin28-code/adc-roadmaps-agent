@@ -1,8 +1,9 @@
 name: Generate AdC Roadmap
 
 on:
-  repository_dispatch:
-    types: [fathom_call_completed]
+  push:
+    paths:
+      - 'triggers/latest.txt'
   workflow_dispatch:
     inputs:
       call_id:
@@ -35,11 +36,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OUTPUT_DIR: output
         run: |
-          CALL_ID="${{ github.event.client_payload.call_id }}"
           MANUAL_ID="${{ github.event.inputs.call_id }}"
-          if [ -n "$CALL_ID" ]; then
-            python src/generate.py --call-id "$CALL_ID"
-          elif [ -n "$MANUAL_ID" ]; then
+          if [ -n "$MANUAL_ID" ]; then
             python src/generate.py --call-id "$MANUAL_ID"
           else
             python src/generate.py --latest
