@@ -1,15 +1,17 @@
 {
-  "niveau_chaleur": "tiède",
+  "niveau_chaleur": "chaud",
   "potentiel_laisse_table": [
-    "Profil et objectifs du prospect jamais clarifiés",
-    "Aucune question de qualification posée par Jimmy sur la situation financière",
-    "Pas de diagnostic des besoins réels d'Antonin",
-    "Vision d'avenir non explorée"
+    "Ne pas avoir creusé sa vision de revenus mensuels cibles",
+    "Pas d'exploration du timeline exact pour lancer les offres en ligne",
+    "Pas de clarification sur le budget alloué à cette transition",
+    "Ne pas avoir questionné son audience cible précise au-delà de 'amis'",
+    "Pas d'abordage du modèle tarifaire prévu"
   ],
   "objections_cachees": [
-    "Prospect peut être trop jeune/étudiant pour investir",
-    "Peut être en train de suivre par curiosité sans intent d'achat réel",
-    "Faible engagement suggère un intérêt superficiel"
+    "Crainte de se disperser et de ne pas réussir sur plusieurs fronts simultanément",
+    "Manque de clarté sur comment trouver des clients payants au-delà de son entourage",
+    "Incertitude sur la viabilité financière de la transition"
   ],
-  "timing_r2": "Non recommandé avant clarification des objectifs et capacité d'investissement"
+  "timing_r2": "3-4 jours, après qu'Antonin ait eu le temps de réfléchir à sa stratégie niche spécifique",
+  "message_whatsapp": "Salut Antonin 👋 Content de notre échange, j'ai bien senti ta déterminaton à pas perdre de temps avant de te lancer. La clarté sur ta niche (tu l'as bien dit, ne pas se noyer) sera déterminante pour ton succès en ligne. Je vais te partager un doc avec la stratégie exact de nos coachs pour passer de 3-4 clients à 20+ en 3 mois. Check-le et dis-moi ce que tu en penses. On refait un point rapidement pour affiner ta route?"
 }
