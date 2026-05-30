@@ -15,7 +15,8 @@ import requests
 
 FATHOM_API_BASE = "https://api.fathom.ai/external/v1"
 ANTHROPIC_API_BASE = "https://api.anthropic.com/v1"
-ADC_KEYWORDS = ["académie des coachs", "academie des coachs", "adc", "maëlys", "maelys", "lafrogne"]
+ADC_KEYWORDS = ["audit business avec poupardin", "audit business", "confirmé : audit"]
+ADC_EXCLUDE = ["mise en place", "lead magnet", "impromptu", "kretz", "forge academy", "revolia", "1-1", "appel 1"]
 
 FATHOM_KEY = os.environ["FATHOM_API_KEY"]
 ANTHROPIC_KEY = os.environ["ANTHROPIC_API_KEY"]
@@ -41,7 +42,9 @@ def list_meetings(limit=20):
 
 def is_adc_meeting(meeting):
     haystack = json.dumps(meeting).lower()
-    return any(kw in haystack for kw in ADC_KEYWORDS)
+    matches = any(kw in haystack for kw in ADC_KEYWORDS)
+    excluded = any(kw in haystack for kw in ADC_EXCLUDE)
+    return matches and not excluded
 
 
 def find_latest_adc_meeting():
