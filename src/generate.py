@@ -469,7 +469,7 @@ def main():
     out_path.write_text(html, encoding="utf-8")
     print(f"Fichier : {out_path}")
 
-    url_publique = f"https://roadmaps.jimmycorp.fit/{prenom_slug}-{nom_slug}"
+    url_publique = f"https://roadmaps.jimmycorp.fit/output/{prenom_slug}-{nom_slug}/"
 
     url_path = output_dir / "DERNIERE-URL.txt"
     url_path.write_text(url_publique, encoding="utf-8")
