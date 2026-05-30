@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feuille de route — Gwendoline Hurtiger</title>
+<style>
+  :root {
+    --red: #C0272D; --red-soft: rgba(192,39,45,0.15); --red-glow: rgba(192,39,45,0.35);
+    --black: #1A1A1A; --bg: #0A0A0B; --glass: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.08); --text: #E8E8E8; --muted: rgba(232,232,232,0.45);
+    --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-weight: 300; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; opacity: 0.18; }
+  .orb-1 { width: 320px; height: 320px; background: var(--red); top: -80px; right: -80px; }
+  .orb-2 { width: 200px; height: 200px; background: var(--red); bottom: 20%; left: -60px; opacity: 0.1; }
+  .container { max-width: 460px; margin: 0 auto; padding: 0 20px 60px; position: relative; z-index: 1; }
+  .header { padding: 52px 0 32px; border-bottom: 1px solid var(--glass-border); margin-bottom: 32px; }
+  .header-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+  .header h1 { font-size: 26px; font-weight: 200; line-height: 1.3; margin-bottom: 16px; }
+  .header h1 em { font-style: normal; color: var(--red); font-weight: 400; }
+  .header-sub { font-size: 13px; color: var(--muted); }
+  .glass-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; margin-bottom: 32px; }
+  .glass-card p { font-size: 14px; margin-bottom: 12px; }
+  .glass-card p:last-child { margin-bottom: 0; }
+  .glass-card p strong { font-weight: 500; color: #fff; }
+  .section-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .section-title { font-size: 20px; font-weight: 300; margin-bottom: 24px; }
+  .section-title em { font-style: normal; color: var(--red); }
+  .vision-list { list-style: none; margin-bottom: 32px; }
+  .vision-list li { padding: 14px 0; border-bottom: 1px solid var(--glass-border); font-size: 14px; display: flex; align-items: flex-start; gap: 12px; }
+  .vision-list li::before { content: '→'; color: var(--red); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+  .diag-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+  .diag-table tr { border-bottom: 1px solid var(--glass-border); }
+  .diag-key { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; padding: 12px 0; width: 45%; vertical-align: top; }
+  .diag-val { font-size: 14px; color: var(--text); padding: 12px 0 12px 12px; }
+  .phase { border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; margin-bottom: 16px; background: var(--glass); }
+  .period-label { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 8px; }
+  .phase-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--red); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 500; margin-bottom: 10px; }
+  .phase-title { font-size: 16px; font-weight: 400; color: #fff; margin-bottom: 16px; }
+  .phase-items { list-style: none; margin-bottom: 20px; }
+  .phase-items li { font-size: 13px; padding: 10px 0 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); position: relative; line-height: 1.5; }
+  .phase-items li::before { content: ''; position: absolute; left: 0; top: 17px; width: 5px; height: 5px; border-radius: 50%; background: var(--red); opacity: 0.6; }
+  .outcome-block { background: var(--red-soft); border: 1px solid var(--red-glow); border-radius: 10px; padding: 14px 16px; }
+  .outcome-header { font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+  .outcome-text { font-size: 13px; color: rgba(232,232,232,0.8); line-height: 1.5; }
+  .eco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 32px; }
+  .eco-item { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; padding: 16px; text-align: center; }
+  .eco-icon { font-size: 20px; margin-bottom: 8px; display: block; }
+  .eco-name { font-size: 12px; font-weight: 500; color: #fff; display: block; margin-bottom: 4px; }
+  .eco-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .proofs-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 32px; }
+  .proofs { list-style: none; width: 100%; }
+  .proofs li { padding: 14px 0; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+  .proof-name { font-weight: 400; color: #fff; }
+  .proof-val { color: var(--red); font-weight: 500; font-size: 16px; }
+  .proofs-cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; color: var(--text); font-family: var(--font); font-size: 13px; text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+  .proofs-cta .arrow { transition: transform 0.2s; }
+  .proofs-cta:hover { background: rgba(192,39,45,0.12); border-color: rgba(192,39,45,0.4); color: #fff; }
+  .proofs-cta:hover .arrow { transform: translate(2px,-2px); }
+  .offer-featured { background: var(--glass); border: 1px solid var(--red); border-radius: 16px; padding: 24px; margin-bottom: 12px; position: relative; overflow: hidden; }
+  .offer-featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--red); }
+  .offer-alt { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 20px 24px; margin-bottom: 16px; opacity: 0.75; }
+  .offer-badge { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .offer-price { font-size: 28px; font-weight: 300; color: #fff; margin-bottom: 4px; }
+  .offer-label { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .offer-features { list-style: none; }
+  .offer-features li { font-size: 13px; padding: 6px 0 6px 16px; position: relative; }
+  .offer-features li::before { content: '✓'; position: absolute; left: 0; color: var(--red); font-size: 11px; }
+  .payment-plan { background: var(--red-soft); border: 1px solid var(--red-glow); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; display: flex; gap: 12px; align-items: center; }
+  .payment-badge { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); white-space: nowrap; }
+  .payment-plan p { font-size: 13px; margin: 0; }
+  .payment-note { font-size: 12px; color: var(--muted); text-align: center; margin-bottom: 16px; }
+  .closing { text-align: center; padding: 40px 0 20px; }
+  .closing-title { font-size: 22px; font-weight: 300; margin-bottom: 20px; line-height: 1.4; }
+  .closing-title em { font-style: normal; color: var(--red); }
+  .closing-body { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.7; }
+  .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--red); color: #fff; font-family: var(--font); font-size: 15px; text-decoration: none; padding: 16px 32px; border-radius: 100px; transition: background 0.2s; }
+  .cta-btn:hover { background: #a01f24; }
+  .footer { border-top: 1px solid var(--glass-border); padding-top: 24px; text-align: center; font-size: 11px; color: var(--muted); }
+  section { margin-bottom: 48px; }
+</style>
+</head>
+<body>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="container">
+  <header class="header">
+    <p class="header-tag">L'Académie des Coachs · Feuille de route</p>
+    <h1>Tout ce qu'il reste à régler pour atteindre <em>pas envie qu'on vienne me dire que du coup je fais des choses illégales</em>.</h1>
+    <p class="header-sub">Pas un argumentaire. Voilà ce que j'ai retenu, voilà le chemin qu'il reste.</p>
+  </header>
+  <div class="glass-card">
+    <p><strong>Où tu en es.</strong> Gwendoline n'a pas de diplôme actuellement. Elle hésite à se lancer en coaching sans certification officielle. Elle craint les implications légales.</p>
+    <p><strong>Ce que tu as déjà prouvé.</strong> non mentionné</p>
+    <p>Ce doc, c'est le pont entre les deux. On en reparle au call.</p>
+  </div>
+  <section>
+    <p class="section-tag">01</p>
+    <h2 class="section-title">Ton point B — <em>pas envie qu'on vienne me dire que du coup je fais des choses illégales</em></h2>
+    <ul class="vision-list">
+      <li>Obtenir son diplôme et se lancer en coaching dans les règles de l'art</li>
+      <li>faire du coaching de manière légale et professionnelle</li>
+      <li>Un revenu qui tient sans que tu portes tout à bout de bras.</li>
+      <li>La liberté de choisir avec qui tu travailles — et pourquoi.</li>
+    </ul>
+  </section>
+  <section>
+    <p class="section-tag">02</p>
+    <h2 class="section-title">Ton point A — les faits.</h2>
+    <table class="diag-table"><tr><td class="diag-key">CA mensuel actuel</td><td class="diag-val">non mentionné</td></tr><tr><td class="diag-key">Offre actuelle</td><td class="diag-val">non mentionné</td></tr><tr><td class="diag-key">Clients actifs</td><td class="diag-val">non mentionné</td></tr><tr><td class="diag-key">Audience</td><td class="diag-val">non mentionné</td></tr><tr><td class="diag-key">Objectif</td><td class="diag-val">Obtenir son diplôme et se lancer en coaching dans les règles de l'art</td></tr><tr><td class="diag-key">Délai visé</td><td class="diag-val">après obtention du diplôme</td></tr></table>
+  </section>
+  <section>
+    <p class="section-tag">03</p>
+    <h2 class="section-title">Les chantiers entre toi et <em>pas envie qu'on vienne me dire que du coup je fais des choses illégales</em>.</h2>
+    
+        <div class="phase">
+          <div class="phase-header">
+            <span class="period-label">Chantier</span>
+            <div class="phase-num">01</div>
+            <h3 class="phase-title">Clarifier le cadre légal</h3>
+          </div>
+          <ul class="phase-items"><li>Quelles sont exactement les activités de coaching qui nécessitent une certification officielle dans votre juridiction ?</li><li>Pourquoi certains coachs prospèrent sans diplôme tandis que d'autres se retrouvent en difficulté ?</li><li>Qu'est-ce qui différencie vraiment un coaching légal d'un coaching à risque ?</li></ul>
+          <div class="outcome-block">
+            <p class="outcome-header">Quand c'est réglé</p>
+            <p class="outcome-text">Vous passez de l'anxiété vague à une compréhension précise des limites légales. Le doute cède place à la clarté.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-header">
+            <span class="period-label">Chantier</span>
+            <div class="phase-num">02</div>
+            <h3 class="phase-title">Comprendre votre exposition réelle</h3>
+          </div>
+          <ul class="phase-items"><li>Quel type de prospect attirerez-vous avec votre positionnement actuel, et quel niveau de risque cela représente-t-il ?</li><li>Qui sont vos clients ideals et qu'attendent-ils vraiment de vous au-delà d'un diplôme ?</li><li>Comment les coachs sans certification dans votre domaine gèrent-ils la question de la légalité avec leurs clients ?</li></ul>
+          <div class="outcome-block">
+            <p class="outcome-header">Quand c'est réglé</p>
+            <p class="outcome-text">Vous voyez que le risque dépend de vos choix de positionnement, pas juste de l'absence de diplôme. La peur devient actionnable.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-header">
+            <span class="period-label">Chantier</span>
+            <div class="phase-num">03</div>
+            <h3 class="phase-title">Construire une crédibilité alternative</h3>
+          </div>
+          <ul class="phase-items"><li>Quel type de preuve ou de validation pourrait rassurer vos clients plus qu'un diplôme traditionnel ?</li><li>Comment créer une offre suffisamment précise et délimitée pour éviter les pièges légaux ?</li><li>Quels éléments de votre parcours ou expertise pourraient construire plus de confiance que vous ne le pensez ?</li></ul>
+          <div class="outcome-block">
+            <p class="outcome-header">Quand c'est réglé</p>
+            <p class="outcome-text">Vous découvrez que la crédibilité a plusieurs chemins. Le diplôme devient optionnel, pas obligatoire.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-header">
+            <span class="period-label">Chantier</span>
+            <div class="phase-num">04</div>
+            <h3 class="phase-title">Lancer sans attendre l'impossible</h3>
+          </div>
+          <ul class="phase-items"><li>Quel est le coût réel d'attendre le diplôme : opportunités perdues, moment manqué, doute qui s'accumule ?</li><li>Avec quels garde-fous pourreriez-vous avancer maintenant au lieu de rester bloqué ?</li><li>Qui vous autorisera vraiment à commencer, ou attendez-vous une permission qui ne viendra jamais ?</li></ul>
+          <div class="outcome-block">
+            <p class="outcome-header">Quand c'est réglé</p>
+            <p class="outcome-text">Vous reprendre votre pouvoir de décision. L'attente devient un choix conscient, non plus une obligation ressentie.</p>
+          </div>
+        </div>
+  </section>
+  <section>
+    <p class="section-tag">04</p>
+    <h2 class="section-title">L'écosystème AdC.</h2>
+    <div class="eco-grid">
+      <div class="eco-item"><span class="eco-icon">🎓</span><span class="eco-name">Plateforme</span><span class="eco-desc">Modules, templates, ressources</span></div>
+      <div class="eco-item"><span class="eco-icon">💬</span><span class="eco-name">Slack</span><span class="eco-desc">Communauté active</span></div>
+      <div class="eco-item"><span class="eco-icon">📡</span><span class="eco-name">Lives</span><span class="eco-desc">Sessions hebdo avec Maëlys</span></div>
+      <div class="eco-item"><span class="eco-icon">🤝</span><span class="eco-name">Partenaires</span><span class="eco-desc">Réseau et opportunités</span></div>
+      <div class="eco-item"><span class="eco-icon">⚡</span><span class="eco-name">Maëlys</span><span class="eco-desc">Accès direct, expertise terrain</span></div>
+      <div class="eco-item"><span class="eco-icon">🔥</span><span class="eco-name">Cohorte</span><span class="eco-desc">Promos actives, émulation</span></div>
+    </div>
+  </section>
+  <section>
+    <p class="section-tag">05</p>
+    <h2 class="section-title">Ce que ça donne — en chiffres.</h2>
+    <div class="proofs-wrap">
+      <ul class="proofs">
+        <li><span class="proof-name">Manon</span><span class="proof-val" data-target="150000">0€</span></li>
+        <li><span class="proof-name">Emmerick — janvier</span><span class="proof-val" data-target="15000">0€</span></li>
+        <li><span class="proof-name">Emmerick + équipe — février</span><span class="proof-val" data-target="19000">0€</span></li>
+        <li><span class="proof-name">Aurélie — 1 semaine</span><span class="proof-val" data-target="7000">0€</span></li>
+        <li><span class="proof-name">Nouvelle coach — 1 mois (0)</span><span class="proof-val" data-target="3300">0€</span></li>
+      </ul>
+      <a class="proofs-cta" href="https://drive.google.com/drive/folders/1fk6fHzGKUbFWrXez6Cm4EPabMdCrkd0V" target="_blank" rel="noopener">Voir tous les témoignages <span class="arrow">↗</span></a>
+    </div>
+  </section>
+  <section>
+    <p class="section-tag">06</p>
+    <h2 class="section-title">Ton accès.</h2>
+    <div class="offer-featured">
+      <p class="offer-badge">Recommandé pour toi</p>
+      <p class="offer-price">1 500€</p>
+      <p class="offer-label">Accès plateforme</p>
+      <ul class="offer-features"><li>Plateforme + Slack + Lives</li><li>Upgrade possible</li><li>Sans suivi 1-to-1</li></ul>
+    </div>
+    <div class="offer-alt">
+      <p class="offer-badge">Alternative</p>
+      <p class="offer-price">5 000€</p>
+      <p class="offer-label">Accompagnement complet</p>
+      <ul class="offer-features"><li>Plateforme + Slack + Lives</li><li>3 mois de suivi 1-to-1</li><li>Garantie 3-10k€/mois en 90 jours</li></ul>
+    </div>
+    <p class="payment-note">Plans 3-4 fois disponibles sur les deux formules.</p>
+  </section>
+  <section class="closing">
+    <h2 class="closing-title">Alors <em>Gwendoline</em>, qu'est-ce que t'attends&nbsp;?</h2>
+    <p class="closing-body">Tu sais où t'en es. Tu sais où tu veux aller. Tu sais ce qu'il reste à régler.<br><br>Dans 6 mois, soit tu y es, soit t'es encore là à regarder le chemin.<br>La seule chose qui change : la décision que tu prends maintenant.</p>
+    <a href="https://wa.me/33756288802?text=Bonjour%2C%20c%27est%20Gwendoline.%20J%27ai%20lu%20ma%20feuille%20de%20route%20et%20je%20veux%20%C3%A9changer." target="_blank" rel="noopener" class="cta-btn"><span>Je suis prêt, on lance</span><span>→</span></a>
+  </section>
+  <footer class="footer"><p>L'Académie des Coachs · Document préparé pour Gwendoline Hurtiger</p></footer>
+</div>
+<script>
+const proofVals = document.querySelectorAll('.proof-val[data-target]');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const target = parseInt(e.target.dataset.target);
+      const start = performance.now();
+      const step = (now) => {
+        const p = Math.min((now-start)/1400,1);
+        const ease = 1-Math.pow(1-p,3);
+        e.target.textContent = Math.round(ease*target).toLocaleString('fr-FR')+'€';
+        if(p<1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold:0.5});
+proofVals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

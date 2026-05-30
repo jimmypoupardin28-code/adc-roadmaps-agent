@@ -1,14 +1,14 @@
 {
-  "niveau_chaleur": "froid",
+  "niveau_chaleur": "tiède",
   "potentiel_laisse_table": [
-    "Jimmy explique que le coaching en ligne ne nécessite pas de diplôme - information qui pourrait déverrouiller le prospect",
-    "L'argument que attendre le diplôme c'est repousser une échéance réalisable maintenant n'a pas convaincu",
-    "Pas d'exploration profonde des blocages ou des vraies préoccupations légales"
+    "Clarifier la légalité du coaching en ligne sans diplôme",
+    "Proposer un accompagnement intermédiaire pendant la formation",
+    "Montrer des exemples de coachs qui se sont lancés avant d'avoir tous les diplômes"
   ],
   "objections_cachees": [
-    "Manque réel de confiance en elle-même au-delà de la légalité",
-    "Peur d'échouer ou de ne pas avoir assez d'expertise",
-    "Utilisation du diplôme comme excuse pour ne pas passer à l'action"
+    "Manque de confiance en sa légitimité actuelle",
+    "Peur du jugement social ou légal",
+    "Doute sur sa capacité à réussir sans certification"
   ],
-  "timing_r2": "Après obtention du diplôme ou clarification légale complète - risque d'abandon du projet"
+  "timing_r2": "Après obtention du diplôme ou dans 2-3 mois pour relancer si elle progresse dans sa formation"
 }
