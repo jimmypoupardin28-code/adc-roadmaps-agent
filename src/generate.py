@@ -480,7 +480,7 @@ def main():
     out_path.write_text(html, encoding="utf-8")
     print(f"Fichier : {out_path}")
 
-    url_publique = f"https://jimmypoupardin28-code.github.io/adc-roadmaps-agent/output/{filename}"
+    url_publique = f"https://roadmaps.jimmycorp.fit/output/{filename}"
 
     url_path = output_dir / "DERNIERE-URL.txt"
     url_path.write_text(url_publique, encoding="utf-8")
