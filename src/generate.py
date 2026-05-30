@@ -8,6 +8,7 @@ import json
 import os
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote
 
@@ -432,18 +433,18 @@ proofVals.forEach(el => io.observe(el));
 
 
 def print_analysis(ctx):
-    print("\n" + "═"*60)
+    print("\n" + "="*60)
     print("ANALYSE POST-CALL")
-    print("═"*60)
-    print(f"\n🌡  Chaleur : {ctx.get('niveau_chaleur','N/A').upper()}")
-    print("\n📌 Potentiel laissé sur la table :")
+    print("="*60)
+    print(f"\n Chaleur : {ctx.get('niveau_chaleur','N/A').upper()}")
+    print("\n Potentiel laisse sur la table :")
     for p in ctx.get("potentiel_laisse_table", []):
-        print(f"   · {p}")
-    print("\n⚠️  Objections cachées à pré-traiter :")
+        print(f"   . {p}")
+    print("\n Objections cachees a pre-traiter :")
     for o in ctx.get("objections_cachees", []):
-        print(f"   · {o}")
-    print(f"\n⏱  Timing R2 : {ctx.get('timing_r2','N/A')}")
-    print("═"*60 + "\n")
+        print(f"   . {o}")
+    print(f"\n Timing R2 : {ctx.get('timing_r2','N/A')}")
+    print("="*60 + "\n")
 
 
 def main():
@@ -453,21 +454,21 @@ def main():
     group.add_argument("--latest", action="store_true")
     args = parser.parse_args()
 
-    print("⏳ Récupération du meeting Fathom...")
+    print("Recuperation du meeting Fathom...")
     if args.call_id:
         meeting = get_meeting_by_id(args.call_id)
     else:
         meeting = find_latest_adc_meeting()
 
-    print(f"✅ Meeting : {meeting.get('title', 'Sans titre')}")
-    print("⏳ Extraction contexte via Claude...")
+    print(f"Meeting : {meeting.get('title', 'Sans titre')}")
+    print("Extraction contexte via Claude...")
     ctx = extract_context(meeting)
-    print(f"✅ Prospect : {ctx['prenom']} {ctx['nom']} | Driver : {ctx['driver_emotionnel']}")
+    print(f"Prospect : {ctx['prenom']} {ctx['nom']} | Driver : {ctx['driver_emotionnel']}")
 
-    print("⏳ Construction des chantiers...")
+    print("Construction des chantiers...")
     phases = build_chantiers(ctx)
 
-    print("⏳ Génération HTML...")
+    print("Generation HTML...")
     html = build_html(ctx, phases)
 
     output_dir = Path(os.environ.get("OUTPUT_DIR", "output"))
@@ -477,21 +478,19 @@ def main():
     filename = f"feuille-de-route-{prenom_slug}-{nom_slug}.html"
     out_path = output_dir / filename
     out_path.write_text(html, encoding="utf-8")
-    print(f"✅ Fichier : {out_path}")
-    # Écrire l'URL publique GitHub Pages
+    print(f"Fichier : {out_path}")
+
     url_publique = f"https://jimmypoupardin28-code.github.io/adc-roadmaps-agent/output/{filename}"
-    # Dernière URL (écrasée à chaque fois)
+
     url_path = output_dir / "DERNIERE-URL.txt"
     url_path.write_text(url_publique, encoding="utf-8")
 
-    # Historique de toutes les URLs
     historique_path = output_dir / "HISTORIQUE-URLS.txt"
-    from datetime import datetime
-   ligne = f"{datetime.now().strftime('%Y-%m-%d %H:%M')} | {ctx['prenom']} {ctx['nom']} | {url_publique}\n"
+    ligne = f"{datetime.now().strftime('%Y-%m-%d %H:%M')} | {ctx['prenom']} {ctx['nom']} | {url_publique}\n"
     with open(historique_path, "a", encoding="utf-8") as f:
         f.write(ligne)
-    print(f"🔗 URL publique : {url_publique}")
 
+    print(f"URL publique : {url_publique}")
     print_analysis(ctx)
 
     analysis_path = output_dir / f"analysis-{prenom_slug}-{nom_slug}.json"
