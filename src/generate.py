@@ -487,7 +487,7 @@ def main():
     # Historique de toutes les URLs
     historique_path = output_dir / "HISTORIQUE-URLS.txt"
     from datetime import datetime
-    ligne = f"{datetime.now().strftime('%Y-%m-%d %H:%M')} | {prenom} {nom} | {url_publique}\n"
+   ligne = f"{datetime.now().strftime('%Y-%m-%d %H:%M')} | {ctx['prenom']} {ctx['nom']} | {url_publique}\n"
     with open(historique_path, "a", encoding="utf-8") as f:
         f.write(ligne)
     print(f"🔗 URL publique : {url_publique}")
