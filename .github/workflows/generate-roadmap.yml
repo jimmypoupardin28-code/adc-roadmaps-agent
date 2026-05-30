@@ -50,3 +50,38 @@ jobs:
           git add output/
           git diff --staged --quiet || git commit -m "Feuille de route générée [$(date +'%Y-%m-%d %H:%M')]"
           git push
+
+      - name: Send email with link
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          URL=$(cat output/DERNIERE-URL.txt)
+          python - <<EOF
+          import smtplib
+          from email.mime.text import MIMEText
+          from email.mime.multipart import MIMEMultipart
+          import os
+
+          url = open("output/DERNIERE-URL.txt").read().strip()
+          password = os.environ["GMAIL_APP_PASSWORD"]
+
+          msg = MIMEMultipart()
+          msg["From"] = "jimmy.poupardin28@gmail.com"
+          msg["To"] = "jimmy.poupardin28@gmail.com"
+          msg["Subject"] = "Feuille de route generee"
+
+          body = f"""Nouvelle feuille de route generee.
+
+          Lien direct :
+          {url}
+
+          Envoie ce lien au prospect via WhatsApp.
+          """
+          msg.attach(MIMEText(body, "plain"))
+
+          with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+              server.login("jimmy.poupardin28@gmail.com", password)
+              server.send_message(msg)
+
+          print("Email envoye !")
+          EOF
