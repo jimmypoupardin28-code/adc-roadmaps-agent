@@ -1,15 +1,14 @@
 {
-  "niveau_chaleur": "tiède",
+  "niveau_chaleur": "froid",
   "potentiel_laisse_table": [
-    "Jimmy n'a pas approfondi pourquoi elle veut faire du coaching",
-    "Pas d'exploration de son expérience actuelle ou expertise",
-    "Pas de clarification du timeline réel pour obtenir le diplôme",
-    "Pas d'adresse directe de la croyance limitante sur la légalité du coaching en ligne"
+    "Jimmy explique que le coaching en ligne ne nécessite pas de diplôme - information qui pourrait déverrouiller le prospect",
+    "L'argument que attendre le diplôme c'est repousser une échéance réalisable maintenant n'a pas convaincu",
+    "Pas d'exploration profonde des blocages ou des vraies préoccupations légales"
   ],
   "objections_cachees": [
-    "Peur de l'illégalité et des conséquences",
-    "Manque de confiance en sa légitimité sans diplôme",
-    "Procrastination justifiée par l'attente du diplôme"
+    "Manque réel de confiance en elle-même au-delà de la légalité",
+    "Peur d'échouer ou de ne pas avoir assez d'expertise",
+    "Utilisation du diplôme comme excuse pour ne pas passer à l'action"
   ],
-  "timing_r2": "Après obtention du diplôme ou si clarification légale apportée - 3-6 mois minimum"
+  "timing_r2": "Après obtention du diplôme ou clarification légale complète - risque d'abandon du projet"
 }
