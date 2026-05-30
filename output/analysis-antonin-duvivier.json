@@ -1,15 +1,18 @@
 {
   "niveau_chaleur": "chaud",
   "potentiel_laisse_table": [
-    "Ne pas avoir exploré son budget/capacité financière pour la formation",
-    "Ne pas avoir quantifié ses objectifs de CA ou nombre de clients visés",
-    "Ne pas avoir creusé sa stratégie commerciale spécifique pour passer de 4 clients à une activité viable"
+    "Pas d'exploration du CA actuel ou des tarifs pratiqués avec les 3-4 clients",
+    "Pas de clarification sur le timing exact de fin de formation et de lancement commercial",
+    "Pas d'approfondissement sur la stratégie réseaux sociaux (questions posées mais call coupée)",
+    "Pas de discussion sur le budget d'investissement pour L'Academie",
+    "Pas de validation de la motivation réelle pour le coaching en ligne vs présentiel"
   ],
   "objections_cachees": [
-    "Peur de se noyer dans trop d'offres et perdre son focus",
-    "Doute sur sa capacité à créer une présence visible sans expertise en réseaux",
-    "Incertitude sur la viabilité financière de passer de l'école au coaching full-time"
+    "Peur de se disperser et de noyer ses efforts sans vraie stratégie",
+    "Pas d'expérience réelle en prospection commerciale au-delà du cercle amical",
+    "Manque de visibilité/présence sur les réseaux (admission récente)",
+    "Timing serré : formation + certification + lancement activité simultanés"
   ],
-  "timing_r2": "5-7 jours, après sa fin d'examens (dans environ 1 mois)",
-  "message_whatsapp": "Salut Antonin 👋 Merci pour cet appel vraiment riche ! J'ai bien vu que tu veux vraiment pas perdre de temps pour structurer ton activité coaching à 100%. On va préparer un plan pour rendre tes offres visibles rapidement et valider ta niche sans te noyer. Je t'envoie un doc avec nos recommandations. Regarde-le et on sera prêts pour le prochain appel ! 💪"
+  "timing_r2": "1 semaine après envoi du document d'onboarding, pour laisser le temps de réfléchir. Avant les examens si possible.",
+  "message_whatsapp": "Salut Antonin 👋 Merci pour cet appel, j'ai bien noté que tu veux vraiment pas perdre de temps et ça se comprend. Avec tes 3-4 clients actuels et ta formation qui finit bientôt, c'est le bon moment pour structurer. Je te partage un document avec notre approche pour les coachs qui commencent. Jette un œil et on en reparle pour affiner les détails du programme 💪"
 }
