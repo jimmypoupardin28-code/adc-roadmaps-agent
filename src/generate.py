@@ -69,7 +69,7 @@ def get_meeting_by_id(meeting_id):
 
 def claude(prompt, system=None, max_tokens=6000):
     body = {
-        "model": "claude-sonnet-4-20250514",
+        "model": ""model": "claude-sonnet-4-5",
         "max_tokens": max_tokens,
         "messages": [{"role": "user", "content": prompt}],
     }
