@@ -480,8 +480,16 @@ def main():
     print(f"✅ Fichier : {out_path}")
     # Écrire l'URL publique GitHub Pages
     url_publique = f"https://jimmypoupardin28-code.github.io/adc-roadmaps-agent/output/{filename}"
+    # Dernière URL (écrasée à chaque fois)
     url_path = output_dir / "DERNIERE-URL.txt"
     url_path.write_text(url_publique, encoding="utf-8")
+
+    # Historique de toutes les URLs
+    historique_path = output_dir / "HISTORIQUE-URLS.txt"
+    from datetime import datetime
+    ligne = f"{datetime.now().strftime('%Y-%m-%d %H:%M')} | {prenom} {nom} | {url_publique}\n"
+    with open(historique_path, "a", encoding="utf-8") as f:
+        f.write(ligne)
     print(f"🔗 URL publique : {url_publique}")
 
     print_analysis(ctx)
