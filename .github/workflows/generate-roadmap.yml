@@ -49,8 +49,9 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "AdC Roadmap Bot"
           git add output/
-          git diff --staged --quiet || git commit -m "Feuille de route generee [$(date +'%Y-%m-%d %H:%M')]"
-          git push
+git diff --staged --quiet || git commit -m "Feuille de route generee [$(date +'%Y-%m-%d %H:%M')]"
+git pull --rebase origin main
+git push
 
       - name: Send email
         env:
