@@ -1,25 +1,18 @@
 {
-  "niveau_chaleur": "tiède",
+  "niveau_chaleur": "tiede",
   "potentiel_laisse_table": [
-    "Le closer n'a pas qualifié la situation business de Valentina (CA, clients, offre)",
-    "Aucune question sur ses objectifs financiers ou de croissance",
-    "Pas de diagnostic des problématiques business réelles au-delà d'Instagram",
-    "Le call s'est arrêté très tôt sans exploration de la situation actuelle",
-    "Aucune amplification de la douleur ou du manque à gagner",
-    "Pas de projection sur ce qu'elle pourrait accomplir avec le bon accompagnement",
-    "Le closer n'a pas pris le lead pour structurer l'appel",
-    "Aucune mention de l'offre de L'Académie des Coachs",
-    "Pas de création d'urgence ou de FOMO",
-    "Le call ressemble plus à une conversation sociale qu'à un audit business"
+    "Le closer n'a pas posé de questions sur la situation business actuelle de Valentina (CA, nombre de clients, offre)",
+    "Aucune qualification sur les objectifs précis et chiffrés de Valentina",
+    "Pas de diagnostic approfondi des problèmes rencontrés dans son business",
+    "Le closer n'a pas créé d'urgence ou exploré les conséquences de ne pas agir",
+    "Aucune exploration des investissements déjà réalisés dans son activité",
+    "Le closer n'a pas transitionné vers la présentation de l'offre ou du programme"
   ],
   "objections_cachees": [
-    "Ne connaît pas l'entreprise et vient tout juste de découvrir via Instagram",
-    "Peut se demander si c'est sérieux ou juste du marketing Instagram",
-    "Manque de confiance initiale, besoin de preuves sociales (d'où la mention des coachs connus)",
-    "Possiblement en phase de recherche d'information sans intention d'achat immédiate",
-    "Peut avoir des contraintes budgétaires non exprimées (début d'activité)",
-    "Peut préférer des solutions gratuites ou low-cost pour débuter"
+    "Besoin de validation par la preuve sociale (mentionne Isa Nutri Coaching et Herb comme facteurs de confiance)",
+    "Possible inquiétude sur les aspects techniques (problème de lien Instagram)",
+    "Questionnement sur le scope exact des services proposés (demande si vous développez les comptes Instagram)"
   ],
-  "timing_r2": "Le call s'est interrompu trop tôt. Avant un R2, il faudrait d'abord finir le R1 correctement avec qualification complète de la situation et présentation de l'offre. Si suite donnée, R2 dans 24-48h maximum.",
-  "message_whatsapp": "Hey Valentina ! Désolé pour les coupures de connexion tout à l'heure 😅\n\nJ'ai bien noté que tu cherches à développer ton compte Insta et tes réels pour structurer ton business de coach. Le fait que tu suives déjà Isa Nutri Coaching et Herb était peau montre que tu as l'œil pour repérer du contenu pro !\n\nJe t'envoie un doc récap avec exactement comment on accompagne les coachs sur la partie création de contenu + toute la stratégie business derrière (parce qu'Instagram c'est cool, mais faut que ça convertisse en clients 💰).\n\nOn se recale vite pour finir notre échange ? Je veux comprendre précisément où tu en es et te montrer comment on peut t'aider concrètement."
+  "timing_r2": "Le call semble avoir été interrompu ou la transcription est incomplète. Il faudrait un appel R2 dans les 24-48h pour qualifier correctement le projet et présenter l'offre.",
+  "message_whatsapp": "Hey Valentina ! Content d'avoir échangé avec toi tout à l'heure malgré les problèmes de connexion 😅\n\nJ'ai bien noté ta question sur l'accompagnement Instagram et le développement de profil. Le fait que tu suives déjà Oluca et Doc Athletic montre que tu as un bon radar pour repérer du contenu de qualité.\n\nJe t'envoie un document qui détaille exactement comment on aide les coachs à structurer leur business ET leur présence en ligne (pas que l'Instagram, mais toute la stratégie derrière).\n\nOn se recale dans les 48h pour voir si ça match avec là où tu veux aller ?"
 }
