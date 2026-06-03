@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feuille de route - Valentina Nocera</title>
+<style>
+  :root {
+    --red: #C0272D; --red-soft: rgba(192,39,45,0.15); --red-glow: rgba(192,39,45,0.35);
+    --black: #1A1A1A; --bg: #0A0A0B; --glass: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.08); --text: #E8E8E8; --muted: rgba(232,232,232,0.45);
+    --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-weight: 300; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; opacity: 0.18; }
+  .orb-1 { width: 320px; height: 320px; background: var(--red); top: -80px; right: -80px; }
+  .orb-2 { width: 200px; height: 200px; background: var(--red); bottom: 20%; left: -60px; opacity: 0.1; }
+  .container { max-width: 460px; margin: 0 auto; padding: 0 20px 60px; position: relative; z-index: 1; }
+  .header { padding: 52px 0 32px; border-bottom: 1px solid var(--glass-border); margin-bottom: 32px; }
+  .header-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+  .header h1 { font-size: 26px; font-weight: 200; line-height: 1.3; margin-bottom: 16px; }
+  .header h1 em { font-style: normal; color: var(--red); font-weight: 400; }
+  .header-sub { font-size: 13px; color: var(--muted); }
+  .glass-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; margin-bottom: 32px; }
+  .glass-card p { font-size: 14px; margin-bottom: 12px; }
+  .glass-card p:last-child { margin-bottom: 0; }
+  .glass-card p strong { font-weight: 500; color: #fff; }
+  .section-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .section-title { font-size: 20px; font-weight: 300; margin-bottom: 24px; }
+  .section-title em { font-style: normal; color: var(--red); }
+  .vision-list { list-style: none; margin-bottom: 32px; }
+  .vision-list li { padding: 14px 0; border-bottom: 1px solid var(--glass-border); font-size: 14px; display: flex; align-items: flex-start; gap: 12px; }
+  .vision-list li::before { content: 'to'; color: var(--red); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+  .diag-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+  .diag-table tr { border-bottom: 1px solid var(--glass-border); }
+  .diag-key { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; padding: 12px 0; width: 45%; vertical-align: top; }
+  .diag-val { font-size: 14px; color: var(--text); padding: 12px 0 12px 12px; }
+  .phase { border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; margin-bottom: 16px; background: var(--glass); }
+  .period-label { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 8px; }
+  .phase-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--red); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 500; margin-bottom: 10px; }
+  .phase-title { font-size: 16px; font-weight: 400; color: #fff; margin-bottom: 16px; }
+  .phase-items { list-style: none; margin-bottom: 20px; }
+  .phase-items li { font-size: 13px; padding: 10px 0 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); position: relative; line-height: 1.5; }
+  .phase-items li::before { content: ''; position: absolute; left: 0; top: 17px; width: 5px; height: 5px; border-radius: 50%; background: var(--red); opacity: 0.6; }
+  .outcome-block { background: var(--red-soft); border: 1px solid var(--red-glow); border-radius: 10px; padding: 14px 16px; }
+  .outcome-header { font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+  .outcome-text { font-size: 13px; color: rgba(232,232,232,0.8); line-height: 1.5; }
+  .eco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 32px; }
+  .eco-item { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; padding: 16px; text-align: center; }
+  .eco-icon { font-size: 20px; margin-bottom: 8px; display: block; }
+  .eco-name { font-size: 12px; font-weight: 500; color: #fff; display: block; margin-bottom: 4px; }
+  .eco-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .proofs-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 32px; }
+  .proofs { list-style: none; width: 100%; }
+  .proofs li { padding: 14px 0; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+  .proof-name { font-weight: 400; color: #fff; }
+  .proof-val { color: var(--red); font-weight: 500; font-size: 16px; }
+  .proofs-cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; color: var(--text); font-family: var(--font); font-size: 13px; text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+  .proofs-cta .arrow { transition: transform 0.2s; }
+  .proofs-cta:hover { background: rgba(192,39,45,0.12); border-color: rgba(192,39,45,0.4); color: #fff; }
+  .proofs-cta:hover .arrow { transform: translate(2px,-2px); }
+  .offer-featured { background: var(--glass); border: 1px solid var(--red); border-radius: 16px; padding: 24px; margin-bottom: 12px; position: relative; overflow: hidden; }
+  .offer-featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--red); }
+  .offer-alt { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 20px 24px; margin-bottom: 16px; opacity: 0.75; }
+  .offer-badge { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .offer-price { font-size: 28px; font-weight: 300; color: #fff; margin-bottom: 4px; }
+  .offer-label { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .offer-features { list-style: none; }
+  .offer-features li { font-size: 13px; padding: 6px 0 6px 16px; position: relative; }
+  .offer-features li::before { content: 'v'; position: absolute; left: 0; color: var(--red); font-size: 11px; }
+  .payment-plan { background: var(--red-soft); border: 1px solid var(--red-glow); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; display: flex; gap: 12px; align-items: center; }
+  .payment-badge { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); white-space: nowrap; }
+  .payment-plan p { font-size: 13px; margin: 0; }
+  .payment-note { font-size: 12px; color: var(--muted); text-align: center; margin-bottom: 16px; }
+  .closing { text-align: center; padding: 40px 0 20px; }
+  .closing-title { font-size: 22px; font-weight: 300; margin-bottom: 20px; line-height: 1.4; }
+  .closing-title em { font-style: normal; color: var(--red); }
+  .closing-body { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.7; }
+  .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--red); color: #fff; font-family: var(--font); font-size: 15px; text-decoration: none; padding: 16px 32px; border-radius: 100px; transition: background 0.2s; }
+  .cta-btn:hover { background: #a01f24; }
+  .footer { border-top: 1px solid var(--glass-border); padding-top: 24px; text-align: center; font-size: 11px; color: var(--muted); }
+  section { margin-bottom: 48px; }
+</style>
+</head>
+<body>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="container">
+  <header class="header">
+    <p class="header-tag">L'Academie des Coachs - Feuille de route</p>
+    <h1>Tout ce qu'il reste a regler pour atteindre <em>je ne suis pas du genre à ne pas répondre aux gens, je réponds tout le temps</em>.</h1>
+    <p class="header-sub">Pas un argumentaire. Voila ce que j'ai retenu, voila le chemin qu'il reste.</p>
+  </header>
+  <div class="glass-card">
+    <p><strong>Ou tu en es.</strong> Coach Instagram avec un lien bio qui ne fonctionnait pas. Suit des coachs comme Isa Nutri Coaching et Oluca pour s'inspirer. Crée du contenu Instagram avec des réels.</p>
+    <p><strong>Ce que tu as deja prouve.</strong> A créé un lien dans sa bio Instagram, crée du contenu régulièrement</p>
+    <p>Ce doc, c'est le pont entre les deux. On en reparle au call.</p>
+  </div>
+  <section>
+    <p class="section-tag">01</p>
+    <h2 class="section-title">Ton point B - <em>je ne suis pas du genre à ne pas répondre aux gens, je réponds tout le temps</em></h2>
+    <ul class="vision-list">
+      <li>Développer son business de coach, potentiellement développer son profil Instagram et ses réels</li>
+      <li>non exprimée</li>
+      <li>Un revenu qui tient sans que tu portes tout a bout de bras.</li>
+      <li>La liberte de choisir avec qui tu travailles - et pourquoi.</li>
+    </ul>
+  </section>
+  <section>
+    <p class="section-tag">02</p>
+    <h2 class="section-title">Ton point A - les faits.</h2>
+    <table class="diag-table"><tr><td class="diag-key">CA mensuel actuel</td><td class="diag-val">non mentionné</td></tr><tr><td class="diag-key">Offre actuelle</td><td class="diag-val">Services de coaching (détails non précisés)</td></tr><tr><td class="diag-key">Clients actifs</td><td class="diag-val">non mentionné</td></tr><tr><td class="diag-key">Audience</td><td class="diag-val">non mentionnée</td></tr><tr><td class="diag-key">Objectif</td><td class="diag-val">Développer son business de coach, potentiellement développer son profil Instagram et ses réels</td></tr><tr><td class="diag-key">Delai vise</td><td class="diag-val">non précisé</td></tr></table>
+  </section>
+  <section>
+    <p class="section-tag">03</p>
+    <h2 class="section-title">Les chantiers entre toi et <em>je ne suis pas du genre à ne pas répondre aux gens, je réponds tout le temps</em>.</h2>
+    
+        <div class="phase">
+          <div class="phase-header">
+            <span class="period-label">Chantier</span>
+            <div class="phase-num">01</div>
+            <h3 class="phase-title">Le piège de la réactivité</h3>
+          </div>
+          <ul class="phase-items"><li>Comment ta disponibilité permanente affecte-t-elle ta capacité à construire une présence visible sur Instagram?</li><li>Pourquoi répondre à tout le monde t'empêche-t-il de développer une stratégie cohérente?</li><li>Qu'est-ce que tu sacrifies vraiment en passant ton temps à répondre plutôt qu'à attirer?</li></ul>
+          <div class="outcome-block">
+            <p class="outcome-header">Quand c'est regle</p>
+            <p class="outcome-text">Tu réalises que ta générosité te coûte ta croissance. Tu acceptes de te protéger pour grandir.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-header">
+            <span class="period-label">Chantier</span>
+            <div class="phase-num">02</div>
+            <h3 class="phase-title">Les fondations invisibles</h3>
+          </div>
+          <ul class="phase-items"><li>Quel vrai mécanisme fait que certains coachs deviennent incontournables tandis que d'autres restent invisibles?</li><li>Comment la crédibilité se construit réellement auprès des autres experts qui pourraient te recommander?</li><li>Pourquoi ton lien bio et ta stratégie de contenu ne créent pas encore de momentum?</li></ul>
+          <div class="outcome-block">
+            <p class="outcome-header">Quand c'est regle</p>
+            <p class="outcome-text">Tu vois enfin la structure cachée derrière le succès apparent. Tu comprends qu'il y a une méthode.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-header">
+            <span class="period-label">Chantier</span>
+            <div class="phase-num">03</div>
+            <h3 class="phase-title">L'attraction vs l'épuisement</h3>
+          </div>
+          <ul class="phase-items"><li>Comment transformer ta présence Instagram pour que les clients viennent vers toi plutôt que l'inverse?</li><li>Quel type de contenu crée une véritable conviction chez ton audience cible?</li><li>Que faut-il changer dans ta visibilité pour que ta réactivité naturelle devienne un atout, pas une limite?</li></ul>
+          <div class="outcome-block">
+            <p class="outcome-header">Quand c'est regle</p>
+            <p class="outcome-text">Tu passes de l'énergie dispersée à l'impact concentré. Tu attires au lieu de poursuivre.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-header">
+            <span class="period-label">Chantier</span>
+            <div class="phase-num">04</div>
+            <h3 class="phase-title">De coach connu à coach incontournable</h3>
+          </div>
+          <ul class="phase-items"><li>Comment les autres coachs reconnaissent-ils la valeur chez quelqu'un et décident de l'associer à leur succès?</li><li>Quel positionnement clair te ferait mémoriser par tes pairs plutôt que juste reconnaître?</li><li>Pourquoi ta stratégie actuelle ne crée pas les partenariats et les recommandations qui accélèrent tout?</li></ul>
+          <div class="outcome-block">
+            <p class="outcome-header">Quand c'est regle</p>
+            <p class="outcome-text">Tu n'es plus seul dans ta croissance. Les autres coachs deviennent tes amplificateurs naturels.</p>
+          </div>
+        </div>
+  </section>
+  <section>
+    <p class="section-tag">04</p>
+    <h2 class="section-title">L'ecosysteme AdC.</h2>
+    <div class="eco-grid">
+      <div class="eco-item"><span class="eco-icon">&#127891;</span><span class="eco-name">Plateforme</span><span class="eco-desc">Modules, templates, ressources</span></div>
+      <div class="eco-item"><span class="eco-icon">&#128172;</span><span class="eco-name">Slack</span><span class="eco-desc">Communaute active</span></div>
+      <div class="eco-item"><span class="eco-icon">&#128225;</span><span class="eco-name">Lives</span><span class="eco-desc">Sessions hebdo avec Maelys</span></div>
+      <div class="eco-item"><span class="eco-icon">&#129309;</span><span class="eco-name">Partenaires</span><span class="eco-desc">Reseau et opportunites</span></div>
+      <div class="eco-item"><span class="eco-icon">&#9889;</span><span class="eco-name">Maelys</span><span class="eco-desc">Acces direct, expertise terrain</span></div>
+      <div class="eco-item"><span class="eco-icon">&#128293;</span><span class="eco-name">Cohorte</span><span class="eco-desc">Promos actives, emulation</span></div>
+    </div>
+  </section>
+  <section>
+    <p class="section-tag">05</p>
+    <h2 class="section-title">Ce que ca donne - en chiffres.</h2>
+    <div class="proofs-wrap">
+      <ul class="proofs">
+        <li><span class="proof-name">Manon</span><span class="proof-val" data-target="150000">0</span></li>
+        <li><span class="proof-name">Emmerick - janvier</span><span class="proof-val" data-target="15000">0</span></li>
+        <li><span class="proof-name">Emmerick + equipe - fevrier</span><span class="proof-val" data-target="19000">0</span></li>
+        <li><span class="proof-name">Aurelie - 1 semaine</span><span class="proof-val" data-target="7000">0</span></li>
+        <li><span class="proof-name">Nouvelle coach - 1 mois (0)</span><span class="proof-val" data-target="3300">0</span></li>
+      </ul>
+      <a class="proofs-cta" href="https://drive.google.com/drive/folders/1fk6fHzGKUbFWrXez6Cm4EPabMdCrkd0V" target="_blank" rel="noopener">Voir tous les temoignages <span class="arrow">&#8599;</span></a>
+    </div>
+  </section>
+  <section>
+    <p class="section-tag">06</p>
+    <h2 class="section-title">Ton acces.</h2>
+    <div class="offer-featured">
+      <p class="offer-badge">Recommande pour toi</p>
+      <p class="offer-price">1 500EUR</p>
+      <p class="offer-label">Acces plateforme</p>
+      <ul class="offer-features"><li>Plateforme + Slack + Lives</li><li>Upgrade possible</li><li>Sans suivi 1-to-1</li></ul>
+    </div>
+    <div class="offer-alt">
+      <p class="offer-badge">Alternative</p>
+      <p class="offer-price">5 000EUR</p>
+      <p class="offer-label">Accompagnement complet</p>
+      <ul class="offer-features"><li>Plateforme + Slack + Lives</li><li>3 mois de suivi 1-to-1</li><li>Garantie 3-10k EUR/mois en 90 jours</li></ul>
+    </div>
+    <p class="payment-note">Plans 3-4 fois disponibles sur les deux formules.</p>
+  </section>
+  <section class="closing">
+    <h2 class="closing-title">Alors <em>Valentina</em>, qu'est-ce que t'attends&nbsp;?</h2>
+    <p class="closing-body">Tu sais ou t'en es. Tu sais ou tu veux aller. Tu sais ce qu'il reste a regler.<br><br>Dans 6 mois, soit tu y es, soit t'es encore la a regarder le chemin.<br>La seule chose qui change : la decision que tu prends maintenant.</p>
+    <a href="https://wa.me/33756288802?text=Bonjour%2C%20c%27est%20Valentina.%20J%27ai%20lu%20ma%20feuille%20de%20route%20et%20je%20veux%20echanger." target="_blank" rel="noopener" class="cta-btn"><span>Je suis pret, on lance</span><span>to</span></a>
+  </section>
+  <footer class="footer"><p>L'Academie des Coachs - Document prepare pour Valentina Nocera</p></footer>
+</div>
+<script>
+const proofVals = document.querySelectorAll('.proof-val[data-target]');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const target = parseInt(e.target.dataset.target);
+      const start = performance.now();
+      const step = (now) => {
+        const p = Math.min((now-start)/1400,1);
+        const ease = 1-Math.pow(1-p,3);
+        e.target.textContent = Math.round(ease*target).toLocaleString('fr-FR') + 'EUR';
+        if(p<1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold:0.5});
+proofVals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
