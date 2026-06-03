@@ -51,7 +51,7 @@ jobs:
           git add output/
           git diff --staged --quiet || git commit -m "Feuille de route generee [$(date +'%Y-%m-%d %H:%M')]"
           git pull --rebase origin main || true
-          git push origin main
+          git push origin main --force-with-lease
 
       - name: Send email
         env:
