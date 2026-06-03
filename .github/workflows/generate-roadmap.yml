@@ -1,9 +1,8 @@
 name: Generate AdC Roadmap
 
 on:
-  push:
-    paths:
-      - 'triggers/latest.txt'
+  repository_dispatch:
+    types: [fathom_call_completed]
   workflow_dispatch:
     inputs:
       call_id:
