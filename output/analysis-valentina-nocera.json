@@ -1,18 +1,25 @@
 {
-  "niveau_chaleur": "tiede",
+  "niveau_chaleur": "tiède",
   "potentiel_laisse_table": [
-    "Pas d'exploration du CA actuel ou des objectifs financiers",
-    "Pas de clarification sur le nombre de clients actuels",
-    "Pas de deep dive sur les problèmes spécifiques avec Instagram",
-    "Pas de diagnostic approfondi des besoins avant de proposer une solution",
-    "La conversation s'est perdue dans des échanges informels sans qualifier le prospect",
-    "Pas de proposition de valeur claire présentée"
+    "Le closer n'a pas qualifié la situation business de Valentina (CA, clients, offre)",
+    "Aucune question sur ses objectifs financiers ou de croissance",
+    "Pas de diagnostic des problématiques business réelles au-delà d'Instagram",
+    "Le call s'est arrêté très tôt sans exploration de la situation actuelle",
+    "Aucune amplification de la douleur ou du manque à gagner",
+    "Pas de projection sur ce qu'elle pourrait accomplir avec le bon accompagnement",
+    "Le closer n'a pas pris le lead pour structurer l'appel",
+    "Aucune mention de l'offre de L'Académie des Coachs",
+    "Pas de création d'urgence ou de FOMO",
+    "Le call ressemble plus à une conversation sociale qu'à un audit business"
   ],
   "objections_cachees": [
-    "Doute sur la crédibilité (a besoin de voir que d'autres coachs connus utilisent le service)",
-    "Technicité perçue comme barrière (ne comprend pas pourquoi son lien ne marche pas)",
-    "Peur de ne pas être au niveau des autres coachs qu'elle suit"
+    "Ne connaît pas l'entreprise et vient tout juste de découvrir via Instagram",
+    "Peut se demander si c'est sérieux ou juste du marketing Instagram",
+    "Manque de confiance initiale, besoin de preuves sociales (d'où la mention des coachs connus)",
+    "Possiblement en phase de recherche d'information sans intention d'achat immédiate",
+    "Peut avoir des contraintes budgétaires non exprimées (début d'activité)",
+    "Peut préférer des solutions gratuites ou low-cost pour débuter"
   ],
-  "timing_r2": "48-72h avec un message centré sur la solution Instagram spécifique",
-  "message_whatsapp": "Salut Valentina ! J'ai adoré t'entendre parler de ta passion pour l'Instagram et de ton envie de développer ton profil comme Oluca et Isa. Concernant ton lien bio qui ne marche pas, on a une solution clé en main pour les coachs. J'ai préparé un document avec les 3 leviers qu'on utilise avec nos clients pour booster leur visibilité. À bientôt pour creuser tout ça ! 💪"
+  "timing_r2": "Le call s'est interrompu trop tôt. Avant un R2, il faudrait d'abord finir le R1 correctement avec qualification complète de la situation et présentation de l'offre. Si suite donnée, R2 dans 24-48h maximum.",
+  "message_whatsapp": "Hey Valentina ! Désolé pour les coupures de connexion tout à l'heure 😅\n\nJ'ai bien noté que tu cherches à développer ton compte Insta et tes réels pour structurer ton business de coach. Le fait que tu suives déjà Isa Nutri Coaching et Herb était peau montre que tu as l'œil pour repérer du contenu pro !\n\nJe t'envoie un doc récap avec exactement comment on accompagne les coachs sur la partie création de contenu + toute la stratégie business derrière (parce qu'Instagram c'est cool, mais faut que ça convertisse en clients 💰).\n\nOn se recale vite pour finir notre échange ? Je veux comprendre précisément où tu en es et te montrer comment on peut t'aider concrètement."
 }
