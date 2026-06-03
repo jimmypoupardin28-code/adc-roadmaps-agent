@@ -1,18 +1,17 @@
 {
+  "prenom": "Valentina",
+  "nom": "Nocera",
   "niveau_chaleur": "tiede",
   "potentiel_laisse_table": [
-    "Le closer n'a pas posé de questions sur la situation business actuelle de Valentina (CA, nombre de clients, offre)",
-    "Aucune qualification sur les objectifs précis et chiffrés de Valentina",
-    "Pas de diagnostic approfondi des problèmes rencontrés dans son business",
-    "Le closer n'a pas créé d'urgence ou exploré les conséquences de ne pas agir",
-    "Aucune exploration des investissements déjà réalisés dans son activité",
-    "Le closer n'a pas transitionné vers la présentation de l'offre ou du programme"
+    "Développement de son compte Instagram et création de contenu réels pour augmenter sa visibilité",
+    "Stratégie de croissance business avec accompagnement personnalisé et équipe d'experts (avocats, fiscalistes, média buyers)",
+    "Accès à la communauté de coachs à succès et partenariats pour optimiser sa création de contenu"
   ],
   "objections_cachees": [
-    "Besoin de validation par la preuve sociale (mentionne Isa Nutri Coaching et Herb comme facteurs de confiance)",
-    "Possible inquiétude sur les aspects techniques (problème de lien Instagram)",
-    "Questionnement sur le scope exact des services proposés (demande si vous développez les comptes Instagram)"
+    "S'attendait à parler directement avec Maëlys et non avec son bras droit, possible déception sur l'interlocuteur",
+    "Problèmes techniques récurrents pendant le call (connexion, coupures) peuvent créer un doute sur le professionnalisme",
+    "Découvre l'académie via un contact froid Instagram, manque de références directes ou de preuves sociales personnalisées à son cas"
   ],
-  "timing_r2": "Le call semble avoir été interrompu ou la transcription est incomplète. Il faudrait un appel R2 dans les 24-48h pour qualifier correctement le projet et présenter l'offre.",
-  "message_whatsapp": "Hey Valentina ! Content d'avoir échangé avec toi tout à l'heure malgré les problèmes de connexion 😅\n\nJ'ai bien noté ta question sur l'accompagnement Instagram et le développement de profil. Le fait que tu suives déjà Oluca et Doc Athletic montre que tu as un bon radar pour repérer du contenu de qualité.\n\nJe t'envoie un document qui détaille exactement comment on aide les coachs à structurer leur business ET leur présence en ligne (pas que l'Instagram, mais toute la stratégie derrière).\n\nOn se recale dans les 48h pour voir si ça match avec là où tu veux aller ?"
+  "timing_r2": "48-72h - Le prospect est réceptif mais pas encore engagé émotionnellement. Laisser maturer la réflexion après envoi du document détaillé, puis relancer avec des preuves sociales concrètes.",
+  "message_whatsapp": "Hey Valentina ! Ravie de notre échange malgré les bugs de connexion 😅 J'ai bien noté ta question sur le développement Instagram et la création de réels - c'est exactement ce qu'on couvre avec notre partenaire spécialisé création de contenu. Je t'envoie le doc complet qui détaille l'accompagnement, l'équipe d'experts autour (média buyers, avocats, etc.) et surtout comment on a aidé des coachs comme toi à passer un cap. Prends le temps de le lire tranquillement avec tes chiens 🐕 On se cale un R2 cette semaine pour voir si ça matche ?"
 }
