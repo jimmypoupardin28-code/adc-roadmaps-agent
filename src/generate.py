@@ -223,7 +223,7 @@ def main():
 
     print(f"Meeting : {meeting.get('title', 'Sans titre')}")
 
-    meeting_text = json.dumps(meeting, ensure_ascii=False)[:20000]
+    meeting_text = json.dumps(meeting, ensure_ascii=False)
 
     print("Génération HTML par Claude Sonnet (prompt complet)...")
     html = claude(
