@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feuille de route — Marie Stemmelen</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+background: #0A0A0B;
+color: #fff;
+line-height: 1.6;
+font-weight: 300;
+overflow-x: hidden;
+}
+
+.orb {
+position: fixed;
+border-radius: 50%;
+filter: blur(80px);
+opacity: 0.15;
+pointer-events: none;
+z-index: 0;
+}
+
+.orb-1 {
+width: 400px;
+height: 400px;
+background: #C0272D;
+top: -100px;
+right: -100px;
+}
+
+.orb-2 {
+width: 350px;
+height: 350px;
+background: #C0272D;
+bottom: 10%;
+left: -150px;
+}
+
+.container {
+position: relative;
+z-index: 1;
+max-width: 460px;
+margin: 0 auto;
+padding: 24px 20px;
+}
+
+.header {
+text-align: left;
+margin-bottom: 48px;
+padding-top: 20px;
+}
+
+.header h1 {
+font-size: 28px;
+font-weight: 400;
+line-height: 1.2;
+margin-bottom: 16px;
+letter-spacing: -0.5px;
+}
+
+.header h1 .highlight {
+color: #C0272D;
+font-weight: 500;
+}
+
+.header p {
+font-size: 15px;
+color: rgba(255,255,255,0.6);
+font-weight: 300;
+}
+
+.glass-box {
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 16px;
+padding: 24px;
+margin-bottom: 32px;
+backdrop-filter: blur(10px);
+}
+
+.glass-box p {
+font-size: 15px;
+margin-bottom: 14px;
+font-weight: 300;
+line-height: 1.7;
+}
+
+.glass-box p:last-child {
+margin-bottom: 0;
+}
+
+.glass-box strong {
+color: #C0272D;
+font-weight: 500;
+}
+
+.section {
+margin-bottom: 56px;
+}
+
+.section-title {
+font-size: 13px;
+text-transform: uppercase;
+letter-spacing: 1.5px;
+color: rgba(255,255,255,0.4);
+margin-bottom: 12px;
+font-weight: 400;
+}
+
+.section h2 {
+font-size: 24px;
+font-weight: 400;
+margin-bottom: 24px;
+line-height: 1.3;
+}
+
+.vision-grid {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.vision-item {
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 12px;
+padding: 16px 18px;
+font-size: 15px;
+font-weight: 300;
+}
+
+.vision-item.primary {
+border-color: #C0272D;
+background: rgba(192, 39, 45, 0.08);
+}
+
+.table {
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 12px;
+overflow: hidden;
+}
+
+.table-row {
+display: flex;
+justify-content: space-between;
+padding: 16px 18px;
+border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+font-size: 14px;
+}
+
+.table-row:last-child {
+border-bottom: none;
+}
+
+.table-key {
+color: rgba(255,255,255,0.5);
+font-weight: 300;
+}
+
+.table-value {
+font-weight: 400;
+text-align: right;
+}
+
+.phase {
+margin-bottom: 40px;
+}
+
+.phase-header {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 16px;
+}
+
+.phase-badge {
+background: #C0272D;
+color: #fff;
+font-size: 11px;
+font-weight: 500;
+padding: 4px 10px;
+border-radius: 6px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.phase-title {
+font-size: 18px;
+font-weight: 400;
+}
+
+.chantier-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin-bottom: 20px;
+}
+
+.chantier-item {
+padding-left: 20px;
+position: relative;
+font-size: 15px;
+font-weight: 300;
+line-height: 1.6;
+color: rgba(255,255,255,0.85);
+}
+
+.chantier-item:before {
+content: '—';
+position: absolute;
+left: 0;
+color: #C0272D;
+}
+
+.outcome-box {
+background: rgba(192, 39, 45, 0.06);
+border-left: 3px solid #C0272D;
+padding: 16px;
+border-radius: 8px;
+margin-top: 16px;
+}
+
+.outcome-label {
+font-size: 12px;
+text-transform: uppercase;
+letter-spacing: 1px;
+color: #C0272D;
+margin-bottom: 8px;
+font-weight: 500;
+}
+
+.outcome-text {
+font-size: 14px;
+font-weight: 300;
+line-height: 1.6;
+color: rgba(255,255,255,0.8);
+}
+
+.ecosystem-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
+
+.ecosystem-card {
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 12px;
+padding: 16px;
+}
+
+.ecosystem-card h4 {
+font-size: 15px;
+font-weight: 500;
+margin-bottom: 6px;
+}
+
+.ecosystem-card p {
+font-size: 13px;
+color: rgba(255,255,255,0.6);
+font-weight: 300;
+line-height: 1.5;
+}
+
+.results-grid {
+display: flex;
+flex-direction: column;
+gap: 16px;
+margin-bottom: 24px;
+}
+
+.result-card {
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 12px;
+padding: 18px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.result-name {
+font-size: 15px;
+font-weight: 400;
+}
+
+.result-amount {
+font-size: 20px;
+font-weight: 500;
+color: #C0272D;
+}
+
+.cta-button {
+display: inline-block;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid rgba(255, 255, 255, 0.15);
+color: #fff;
+text-decoration: none;
+padding: 12px 24px;
+border-radius: 24px;
+font-size: 14px;
+font-weight: 400;
+transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+background: rgba(255, 255, 255, 0.08);
+border-color: rgba(255, 255, 255, 0.25);
+}
+
+.offer-card {
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 16px;
+padding: 24px;
+margin-bottom: 16px;
+}
+
+.offer-card.featured {
+border-color: #C0272D;
+background: rgba(192, 39, 45, 0.06);
+}
+
+.offer-price {
+font-size: 32px;
+font-weight: 500;
+color: #C0272D;
+margin-bottom: 16px;
+}
+
+.offer-features {
+list-style: none;
+margin-bottom: 16px;
+}
+
+.offer-features li {
+padding: 8px 0;
+padding-left: 24px;
+position: relative;
+font-size: 14px;
+font-weight: 300;
+}
+
+.offer-features li:before {
+content: '✓';
+position: absolute;
+left: 0;
+color: #C0272D;
+font-weight: 500;
+}
+
+.offer-plans {
+font-size: 13px;
+color: rgba(255,255,255,0.5);
+margin-bottom: 20px;
+font-weight: 300;
+}
+
+.closing {
+text-align: center;
+margin: 64px 0 48px;
+}
+
+.closing h2 {
+font-size: 26px;
+font-weight: 400;
+margin-bottom: 20px;
+}
+
+.closing p {
+font-size: 15px;
+font-weight: 300;
+line-height: 1.7;
+margin-bottom: 32px;
+color: rgba(255,255,255,0.85);
+}
+
+.whatsapp-button {
+display: inline-block;
+background: #C0272D;
+color: #fff;
+text-decoration: none;
+padding: 16px 32px;
+border-radius: 28px;
+font-size: 15px;
+font-weight: 500;
+transition: all 0.3s ease;
+}
+
+.whatsapp-button:hover {
+background: #a02127;
+transform: translateY(-2px);
+}
+
+.footer {
+text-align: center;
+padding: 32px 0;
+font-size: 13px;
+color: rgba(255,255,255,0.4);
+border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 400px) {
+.header h1 {
+font-size: 24px;
+}
+.section h2 {
+font-size: 20px;
+}
+.ecosystem-grid {
+grid-template-columns: 1fr;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<div class="container">
+
+<div class="header">
+<h1>Tout ce qu'il reste à régler pour <span class="highlight">ne plus avoir de patron et vivre de tes coachings</span>.</h1>
+<p>Pas un argumentaire. Voilà ce que j'ai retenu, voilà le chemin qu'il reste.</p>
+</div>
+
+<div class="glass-box">
+<p>T'as lancé tes suivis en ligne en 2021. T'as eu des clients à 30€, puis 50€, puis <strong>150-200€/mois</strong>. Tu sais coacher. Tu sais signer.</p>
+<p>Mais depuis décembre, t'es en arrêt, tu survis avec moins de 1 000€ par mois, et tu n'as même plus d'offre à présenter. Pas de structure. Pas de stratégie. Juste l'envie brute de reprendre et que ça marche pour de bon.</p>
+<p>Ce doc, c'est le pont entre là où t'es et là où tu veux être. On en reparle au call.</p>
+</div>
+
+<div class="section">
+<div class="section-title">01</div>
+<h2>Ton point B</h2>
+<div class="vision-grid">
+<div class="vision-item primary">Ne plus avoir de patron, ne plus calculer si tu peux te permettre d'aller voir tes parents</div>
+<div class="vision-item">Avoir une offre claire que tu n'as plus peur de présenter</div>
+<div class="vision-item">Faire du présentiel de temps en temps (week-ends séminaires montagne) et du distanciel avec liberté de planning</div>
+<div class="vision-item">Faire entre 3 000 et 5 000€/mois pour être tranquille</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">02</div>
+<h2>Ton point A</h2>
+<div class="table">
+<div class="table-row">
+<div class="table-key">CA actuel</div>
+<div class="table-value">0€/mois</div>
+</div>
+<div class="table-row">
+<div class="table-key">Clients actifs</div>
+<div class="table-value">0</div>
+</div>
+<div class="table-row">
+<div class="table-key">Offre en place</div>
+<div class="table-value">Aucune depuis des mois</div>
+</div>
+<div class="table-row">
+<div class="table-key">Revenu stable</div>
+<div class="table-value">< 1 000€ (indemnités arrêt)</div>
+</div>
+<div class="table-row">
+<div class="table-key">Prix max atteint avant</div>
+<div class="table-value">150-200€/mois</div>
+</div>
+<div class="table-row">
+<div class="table-key">Accompagnements passés</div>
+<div class="table-value">2 (10 000€ investis, aucun résultat)</div>
+</div>
+<div class="table-row">
+<div class="table-key">Situation émotionnelle</div>
+<div class="table-value">Doute permanent, peur de refaire une erreur</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">03</div>
+<h2>Les chantiers entre toi et ne plus avoir de patron</h2>
+
+<div class="phase">
+<div class="phase-header">
+<div class="phase-badge">Chantier</div>
+<div class="phase-title">Clarifier ce que tu vends</div>
+</div>
+<div class="chantier-list">
+<div class="chantier-item">Comment tu construis une offre que tu n'as plus peur de présenter, à un prix qui te fait vivre sans te faire douter</div>
+<div class="chantier-item">À quel tarif tu deviens crédible sans être hors de portée — et comment tu fais le saut sans perdre ceux que t'as déjà eus</div>
+<div class="chantier-item">Qu'est-ce que tu mets dedans pour arrêter d'avoir peur de « ne pas en faire assez » et de donner toujours plus</div>
+</div>
+<div class="outcome-box">
+<div class="outcome-label">Quand c'est réglé</div>
+<div class="outcome-text">Tu sais ce que tu vends, à qui, à quel prix. Tu n'hésites plus. Tu présentes ton offre sans te justifier.</div>
+</div>
+</div>
+
+<div class="phase">
+<div class="phase-header">
+<div class="phase-badge">Chantier</div>
+<div class="phase-title">Structurer ton contenu</div>
+</div>
+<div class="chantier-list">
+<div class="chantier-item">Comment tu publies régulièrement sans t'éparpiller dans tous les sens et sans douter de chaque post avant de le mettre</div>
+<div class="chantier-item">Comment tu transformes ta blessure et ton expérience en contenu qui attire les bonnes personnes, sans te mettre à nu</div>
+<div class="chantier-item">Quelle ligne directrice tu suis pour que chaque post serve ton business au lieu d'être juste « pour poster »</div>
+</div>
+<div class="outcome-box">
+<div class="outcome-label">Quand c'est réglé</div>
+<div class="outcome-text">Tu postes sans réfléchir 3h. Tu sais ce que tu dis. Les messages commencent à arriver en DM.</div>
+</div>
+</div>
+
+<div class="phase">
+<div class="phase-header">
+<div class="phase-badge">Chantier</div>
+<div class="phase-title">Signer sans te faire bouffer</div>
+</div>
+<div class="chantier-list">
+<div class="chantier-item">Comment tu signes un client sans revivre l'expérience de celle qui arrête après 1 mois alors qu'elle avait dit 3</div>
+<div class="chantier-item">Quels contrats tu fais signer, comment tu te protèges, et comment tu gères une personne qui veut partir</div>
+<div class="chantier-item">Comment tu mènes un appel de vente pour qu'on te dise oui, sans pression, sans être dans le flou</div>
+</div>
+<div class="outcome-box">
+<div class="outcome-label">Quand c'est réglé</div>
+<div class="outcome-text">Tu signes sereinement. Tu sais que tu ne te feras plus avoir. Ton client sait ce qu'il achète, toi tu sais ce que tu livres.</div>
+</div>
+</div>
+
+<div class="phase">
+<div class="phase-header">
+<div class="phase-badge">Chantier</div>
+<div class="phase-title">Gérer l'argent et la peur</div>
+</div>
+<div class="chantier-list">
+<div class="chantier-item">Comment tu optimises ta fiscalité pour garder plus d'argent dans ta poche — légalement — sans paniquer devant l'URSSAF</div>
+<div class="chantier-item">Comment tu sors de la mentalité « et si ma voiture lâche / et si il y a une couille » pour passer en mode investissement qui rapporte</div>
+<div class="chantier-item">Comment tu te donnes la permission de prendre un risque calculé sans avoir l'impression de jouer ta survie à chaque fois</div>
+</div>
+<div class="outcome-box">
+<div class="outcome-label">Quand c'est réglé</div>
+<div class="outcome-text">Tu respires. Tu sais où va ton argent. Tu n'as plus peur d'investir parce que tu sais comment ça rentre.</div>
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<div class="section-title">04</div>
+<h2>L'écosystème AdC</h2>
+<div class="ecosystem-grid">
+<div class="ecosystem-card">
+<h4>Plateforme</h4>
+<p>Modules de A à Z. Fiscalité, offre, contenu, nutrition, TCA, ads, contrats. Tout.</p>
+</div>
+<div class="ecosystem-card">
+<h4>Slack</h4>
+<p>Communauté 24/7. Questions, feedback, wins, soutien réel.</p>
+</div>
+<div class="ecosystem-card">
+<h4>Lives quotidiens</h4>
+<p>Chaque jour un expert. Création contenu, vente, étude de cas, fiscalité.</p>
+</div>
+<div class="ecosystem-card">
+<h4>Partenaires</h4>
+<p>Avocat fiscaliste, expert Reels, spécialiste vidéo. Pas nous, des vrais pros.</p>
+</div>
+<div class="ecosystem-card">
+<h4>Maëlys 1-to-1</h4>
+<p>Suivi perso hebdo pendant 3 mois. Feuille de route. Correction. Pas de théorie.</p>
+</div>
+<div class="ecosystem-card">
+<h4>Ta cohorte</h4>
+<p>Tu rentres avec d'autres. Même galère, même objectif. Zéro compétition.</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">05</div>
+<h2>Résultats communauté</h2>
+<div class="results-grid">
+<div class="result-card">
+<div class="result-name">Manon</div>
+<div class="result-amount">150 000€</div>
+</div>
+<div class="result-card">
+<div class="result-name">Emmerick (janvier)</div>
+<div class="result-amount">15 000€</div>
+</div>
+<div class="result-card">
+<div class="result-name">Emmerick + équipe (février)</div>
+<div class="result-amount">19 000€</div>
+</div>
+<div class="result-card">
+<div class="result-name">Aurélie (1 semaine)</div>
+<div class="result-amount">7 000€</div>
+</div>
+<div class="result-card">
+<div class="result-name">Elsa (1 mois, partie de 0)</div>
+<div class="result-amount">3 300€</div>
+</div>
+</div>
+<a href="https://drive.google.com/drive/folders/1fk6fHzGKUbFWrXez6Cm4EPabMdCrkd0V" class="cta-button" target="_blank">Voir tous les témoignages</a>
+</div>
+
+<div class="section">
+<div class="section-title">06</div>
+<h2>Ton accès</h2>
+
+<div class="offer-card featured">
+<div class="offer-price">1 500€</div>
+<ul class="offer-features">
+<li>Accès plateforme à vie</li>
+<li>Communauté Slack à vie</li>
+<li>Lives quotidiens à vie</li>
+<li>Tous les replays et mises à jour</li>
+<li>Modules fiscalité, contenu, vente, coaching</li>
+</ul>
+<div class="offer-plans">Paiement en 3 ou 4 fois possible</div>
+<p style="font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.6;">Tu avances seule avec tous les outils. Pas de suivi perso, pas de garantie contractuelle. Pour celle qui veut le système sans attendre.</p>
+</div>
+
+<div class="offer-card">
+<div class="offer-price">5 000€</div>
+<ul class="offer-features">
+<li>Tout ce qu'il y a au-dessus</li>
+<li>+ 3 mois de suivi 1-to-1 hebdo avec un coach dédié</li>
+<li>+ Garantie contractuelle : 3 000 à 10 000€ en 90 jours</li>
+<li>+ Feuille de route perso après chaque session</li>
+<li>+ Correction en temps réel de ton contenu, tes appels, ton offre</li>
+</ul>
+<div class="offer-plans">Paiement en 3 ou 4 fois possible</div>
+<p style="font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.6;">Pour celle qui veut un résultat garanti. On ne te lâche pas tant que t'as pas signé.</p>
+</div>
+</div>
+
+<div class="closing">
+<h2>Alors Marie, qu'est-ce que t'attends ?</h2>
+<p>Tu sais où t'en es. Tu sais où tu veux aller. Tu sais ce qu'il reste à régler. Dans 6 mois, soit tu vis de tes coachings sans patron, soit t'es encore en train de calculer si tu peux te payer l'essence pour aller voir tes parents. La seule chose qui change : la décision que tu prends maintenant.</p>
+<a href="https://wa.me/33756288802?text=Bonjour%2C%20c%27est%20Marie.%20J%27ai%20lu%20ma%20feuille%20de%20route%20et%20je%20veux%20%C3%A9changer." class="whatsapp-button" target="_blank">Je suis prête, on lance</a>
+</div>
+
+<div class="footer">
+L'Académie des Coachs · Document préparé pour Marie Stemmelen
+</div>
+
+</div>
+
+</body>
+</html>
