@@ -3,414 +3,448 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feuille de route — Gwen Auber</title>
+    <title>Feuille de route – Gwen Auber</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background: #0A0A0B;
-            color: #fff;
-            font-weight: 300;
+            color: #FFFFFF;
             line-height: 1.6;
+            font-weight: 300;
             overflow-x: hidden;
         }
-
+        
         .orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(120px);
             opacity: 0.15;
             pointer-events: none;
             z-index: 0;
         }
-
+        
         .orb-1 {
-            width: 400px;
-            height: 400px;
+            width: 600px;
+            height: 600px;
             background: #C0272D;
-            top: -10%;
-            right: -10%;
+            top: -200px;
+            right: -200px;
         }
-
+        
         .orb-2 {
-            width: 300px;
-            height: 300px;
+            width: 500px;
+            height: 500px;
             background: #C0272D;
-            bottom: 20%;
-            left: -5%;
+            bottom: -150px;
+            left: -150px;
         }
-
+        
         .container {
             max-width: 460px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 24px 20px;
             position: relative;
             z-index: 1;
         }
-
-        header {
-            margin: 60px 0 40px;
-            text-align: left;
+        
+        .header {
+            margin-bottom: 48px;
+            padding-top: 32px;
         }
-
-        h1 {
-            font-size: 32px;
+        
+        .header h1 {
+            font-size: 28px;
             font-weight: 400;
-            line-height: 1.2;
+            line-height: 1.3;
             margin-bottom: 16px;
+            letter-spacing: -0.02em;
         }
-
-        h1 .red {
+        
+        .header h1 .red {
             color: #C0272D;
             font-weight: 500;
         }
-
-        .subtitle {
+        
+        .header .subtitle {
             font-size: 15px;
             color: rgba(255,255,255,0.6);
             font-weight: 300;
         }
-
-        .glass {
+        
+        .glass-card {
             background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 16px;
             padding: 24px;
-            margin: 32px 0;
+            margin-bottom: 32px;
+            backdrop-filter: blur(20px);
         }
-
-        .intro p {
-            margin-bottom: 16px;
+        
+        .intro-text {
             font-size: 15px;
             line-height: 1.7;
             color: rgba(255,255,255,0.85);
+            margin-bottom: 16px;
         }
-
-        .intro p:last-child {
+        
+        .intro-text:last-child {
             margin-bottom: 0;
-            color: #fff;
-            font-weight: 400;
         }
-
+        
         .section {
-            margin: 60px 0;
+            margin-bottom: 56px;
         }
-
+        
         .section-number {
             font-size: 13px;
             color: #C0272D;
             font-weight: 500;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
         }
-
-        h2 {
-            font-size: 24px;
-            font-weight: 400;
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 500;
             margin-bottom: 24px;
-            line-height: 1.3;
+            letter-spacing: -0.01em;
         }
-
+        
         .vision-grid {
-            display: grid;
+            display: flex;
+            flex-direction: column;
             gap: 16px;
         }
-
+        
         .vision-item {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 12px;
-            padding: 20px;
+            padding: 18px;
             font-size: 15px;
             color: rgba(255,255,255,0.85);
+            transition: all 0.3s ease;
         }
-
+        
         .vision-item.primary {
-            border-color: rgba(192, 39, 45, 0.3);
-            background: rgba(192, 39, 45, 0.05);
-            color: #fff;
+            background: rgba(192,39,45,0.08);
+            border-color: rgba(192,39,45,0.3);
+            color: #FFFFFF;
             font-weight: 400;
         }
-
+        
         .data-table {
-            display: grid;
-            gap: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 12px;
+            overflow: hidden;
         }
-
+        
         .data-row {
             display: flex;
-            justify-content: space-between;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            font-size: 14px;
+            background: rgba(10,10,11,0.8);
+            backdrop-filter: blur(20px);
         }
-
-        .data-row:last-child {
-            border-bottom: none;
-        }
-
+        
         .data-key {
+            flex: 0 0 140px;
+            padding: 16px;
+            font-size: 13px;
             color: rgba(255,255,255,0.5);
-            font-weight: 300;
-        }
-
-        .data-value {
-            color: #fff;
             font-weight: 400;
-            text-align: right;
         }
-
+        
+        .data-value {
+            flex: 1;
+            padding: 16px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.95);
+            font-weight: 400;
+        }
+        
         .phase {
-            margin: 40px 0;
+            margin-bottom: 40px;
         }
-
-        .phase-label {
-            display: inline-block;
+        
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .phase-badge {
             background: #C0272D;
-            color: #fff;
-            font-size: 11px;
+            color: #FFFFFF;
+            font-size: 12px;
             font-weight: 500;
             padding: 6px 12px;
             border-radius: 20px;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.03em;
         }
-
-        .phase h3 {
-            font-size: 20px;
-            font-weight: 400;
+        
+        .phase-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #FFFFFF;
+        }
+        
+        .phase-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+        
+        .challenge-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             margin-bottom: 20px;
-            line-height: 1.3;
         }
-
-        .chantier-list {
-            list-style: none;
-            margin-bottom: 24px;
-        }
-
-        .chantier-list li {
+        
+        .challenge-item {
             padding-left: 20px;
             position: relative;
-            margin-bottom: 14px;
             font-size: 15px;
             color: rgba(255,255,255,0.8);
             line-height: 1.6;
         }
-
-        .chantier-list li:before {
-            content: '—';
+        
+        .challenge-item:before {
+            content: '·';
             position: absolute;
-            left: 0;
+            left: 6px;
             color: #C0272D;
+            font-size: 20px;
+            line-height: 1.4;
         }
-
-        .outcome {
-            background: rgba(192, 39, 45, 0.08);
-            border-left: 2px solid #C0272D;
-            padding: 16px;
+        
+        .outcome-box {
+            background: rgba(192,39,45,0.05);
+            border-left: 3px solid #C0272D;
+            padding: 16px 18px;
             border-radius: 8px;
-            font-size: 14px;
-            color: rgba(255,255,255,0.85);
+            margin-top: 16px;
         }
-
+        
         .outcome-label {
+            font-size: 12px;
             color: #C0272D;
             font-weight: 500;
-            font-size: 12px;
             margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.03em;
         }
-
-        .eco-grid {
+        
+        .outcome-text {
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+        }
+        
+        .ecosystem-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
-
-        .eco-item {
+        
+        .ecosystem-item {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 12px;
-            padding: 20px;
-            font-size: 14px;
+            padding: 18px;
         }
-
-        .eco-item-title {
+        
+        .ecosystem-item-title {
+            font-size: 14px;
             font-weight: 500;
             margin-bottom: 6px;
-            color: #fff;
+            color: #FFFFFF;
         }
-
-        .eco-item-desc {
-            color: rgba(255,255,255,0.6);
+        
+        .ecosystem-item-desc {
             font-size: 13px;
+            color: rgba(255,255,255,0.6);
             line-height: 1.5;
         }
-
+        
         .results-grid {
-            display: grid;
+            display: flex;
+            flex-direction: column;
             gap: 16px;
+            margin-bottom: 24px;
         }
-
+        
         .result-card {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 12px;
             padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
-
+        
         .result-name {
-            font-size: 15px;
-            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 8px;
+            font-weight: 400;
         }
-
+        
         .result-amount {
-            font-size: 22px;
+            font-size: 28px;
             font-weight: 500;
             color: #C0272D;
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
         }
-
-        .btn {
+        
+        .result-context {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .btn-pill {
             display: inline-block;
-            background: rgba(255,255,255,0.05);
-            color: #fff;
-            text-decoration: none;
-            padding: 14px 28px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.85);
+            padding: 12px 24px;
             border-radius: 30px;
+            text-decoration: none;
             font-size: 14px;
             font-weight: 400;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             text-align: center;
         }
-
-        .btn:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.2);
+        
+        .btn-pill:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.15);
         }
-
+        
         .pricing-grid {
-            display: grid;
-            gap: 20px;
-            margin: 32px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
-
+        
         .pricing-card {
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 16px;
-            padding: 28px;
-            position: relative;
+            padding: 24px;
+            transition: all 0.3s ease;
         }
-
+        
         .pricing-card.featured {
-            border-color: rgba(192, 39, 45, 0.4);
-            background: rgba(192, 39, 45, 0.05);
+            background: rgba(192,39,45,0.06);
+            border-color: rgba(192,39,45,0.3);
         }
-
-        .pricing-badge {
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            background: #C0272D;
-            color: #fff;
-            font-size: 11px;
-            font-weight: 500;
-            padding: 5px 12px;
-            border-radius: 12px;
-            letter-spacing: 0.5px;
-        }
-
-        .pricing-price {
+        
+        .pricing-amount {
             font-size: 36px;
-            font-weight: 400;
-            margin-bottom: 8px;
-            color: #fff;
+            font-weight: 500;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
         }
-
-        .pricing-subtitle {
+        
+        .pricing-period {
             font-size: 13px;
             color: rgba(255,255,255,0.5);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
-
+        
         .pricing-features {
-            list-style: none;
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px;
         }
-
-        .pricing-features li {
-            padding: 10px 0;
+        
+        .pricing-feature {
             font-size: 14px;
             color: rgba(255,255,255,0.75);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.5;
         }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
+        
+        .pricing-feature:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #C0272D;
+            font-weight: 500;
         }
-
+        
         .closing {
+            margin-top: 64px;
+            margin-bottom: 48px;
             text-align: center;
-            margin: 80px 0 60px;
         }
-
-        .closing h2 {
-            font-size: 28px;
+        
+        .closing-title {
+            font-size: 24px;
+            font-weight: 500;
             margin-bottom: 20px;
+            letter-spacing: -0.01em;
         }
-
-        .closing p {
+        
+        .closing-text {
             font-size: 15px;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.75);
             line-height: 1.7;
             margin-bottom: 32px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
         }
-
-        .btn-primary {
+        
+        .btn-cta {
+            display: inline-block;
             background: #C0272D;
-            border-color: #C0272D;
-            font-weight: 500;
-            padding: 16px 32px;
+            color: #FFFFFF;
+            padding: 16px 36px;
+            border-radius: 30px;
+            text-decoration: none;
             font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
-
-        .btn-primary:hover {
-            background: #a01f24;
-            border-color: #a01f24;
+        
+        .btn-cta:hover {
+            background: #D02E35;
+            transform: translateY(-2px);
         }
-
-        footer {
+        
+        .footer {
             text-align: center;
-            padding: 40px 0;
+            padding: 32px 0;
             font-size: 13px;
-            color: rgba(255,255,255,0.4);
-            border-top: 1px solid rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.3);
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 28px;
+        
+        @media (max-width: 380px) {
+            .container {
+                padding: 20px 16px;
             }
-
-            h2 {
-                font-size: 22px;
+            
+            .header h1 {
+                font-size: 24px;
             }
-
-            .eco-grid {
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .ecosystem-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -419,240 +453,261 @@
 <body>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
-
+    
     <div class="container">
-        <header>
-            <h1>Tout ce qu'il reste à régler pour atteindre <span class="red">la liberté et le confort de vie</span>.</h1>
+        <div class="header">
+            <h1>Tout ce qu'il reste à régler pour atteindre <span class="red">liberté et confort de vie</span>.</h1>
             <p class="subtitle">Pas un argumentaire. Voilà ce que j'ai retenu, voilà le chemin qu'il reste.</p>
-        </header>
-
-        <div class="glass intro">
-            <p>Aujourd'hui, tu es à ~2 000€/mois net. Responsable Orange Bleu, tu coaches déjà une dizaine de personnes en local, tu factures 800€/mois sur du one-to-one. Tu vaux cher — le problème c'est que tu n'as ni vitrine, ni système pour que ça sorte du cercle proche.</p>
-            <p>Tu sais coacher. Tu sais programmer. Tu sais vendre en face-à-face. T'as 6 ans de métier, tu vas switcher en CrossFit dans un mois, t'as du temps qui se libère. T'es capable — c'est pas la question.</p>
-            <p>Ce doc c'est le pont entre où t'en es et ce que tu veux : vivre de ce que t'aimes, arrêter de dépendre d'un patron, accompagner sans t'essouffler. On en reparle au call.</p>
         </div>
-
-        <section class="section">
+        
+        <div class="glass-card">
+            <p class="intro-text">Tu es responsable en Orange Bleu, tu fais 12 à 15 cours co par semaine, tu coaches déjà une dizaine de personnes en parallèle. Tu factures autour de 200€/mois sur ton coaching, tu tournes à 2 004€ net entre ton salaire et ton side. Six ans dans le métier. Tu sais coacher.</p>
+            
+            <p class="intro-text">Tu passes en crossfit le mois prochain, 25h/semaine, tu libères du temps. Tu as déjà un compte Insta en vitrine, des stories, du contenu lifestyle. Tu sais ce que c'est que d'accompagner. Tu n'es pas débutant. Tu es juste pas structuré en ligne.</p>
+            
+            <p class="intro-text">Ce doc, c'est le pont entre là où tu en es et ce que tu m'as décrit. On en reparle au call.</p>
+        </div>
+        
+        <div class="section">
             <div class="section-number">01</div>
-            <h2>Ton point B</h2>
+            <h2 class="section-title">Ton point B</h2>
             <div class="vision-grid">
-                <div class="vision-item primary">
-                    Liberté et confort de vie — vivre de ce qui te fait kiffer, le coaching, sans te niquer la santé
-                </div>
-                <div class="vision-item">
-                    Remplacer ton salaire actuel (2 000€ net/mois minimum) avec ton propre business
-                </div>
-                <div class="vision-item">
-                    Capter des clients qui ne sont pas juste dans ton cercle local — sortir du plafond géographique
-                </div>
-                <div class="vision-item">
-                    Construire une vitrine qui travaille pour toi, maintenant et dans 6 mois, sans que tu sois dessus H24
-                </div>
+                <div class="vision-item primary">Liberté et confort de vie : vivre de ce que tu aimes sans te poser de questions sur chaque dépense</div>
+                <div class="vision-item">Ne plus dépendre d'un patron, gérer ton emploi du temps</div>
+                <div class="vision-item">Coacher et accompagner des gens qui veulent vraiment avancer, pas seulement remplir des créneaux</div>
+                <div class="vision-item">Arrêter les cours collectifs qui te flingent les articulations, te concentrer sur ce qui compte</div>
             </div>
-        </section>
-
-        <section class="section">
+        </div>
+        
+        <div class="section">
             <div class="section-number">02</div>
-            <h2>Ton point A</h2>
-            <div class="glass">
-                <div class="data-table">
-                    <div class="data-row">
-                        <span class="data-key">Revenu actuel total</span>
-                        <span class="data-value">~2 000€ net/mois</span>
-                    </div>
-                    <div class="data-row">
-                        <span class="data-key">CA coaching one-to-one</span>
-                        <span class="data-value">800€/mois</span>
-                    </div>
-                    <div class="data-row">
-                        <span class="data-key">Nombre de clients actifs</span>
-                        <span class="data-value">~10 (cercle local)</span>
-                    </div>
-                    <div class="data-row">
-                        <span class="data-key">Présence online</span>
-                        <span class="data-value">Stories Instagram, pas de feed structuré</span>
-                    </div>
-                    <div class="data-row">
-                        <span class="data-key">Prospection distanciel</span>
-                        <span class="data-value">Jamais fait</span>
-                    </div>
-                    <div class="data-row">
-                        <span class="data-key">Client 100% online</span>
-                        <span class="data-value">0</span>
-                    </div>
-                    <div class="data-row">
-                        <span class="data-key">Système de qualification</span>
-                        <span class="data-value">Aucun</span>
-                    </div>
-                    <div class="data-row">
-                        <span class="data-key">Temps disponible dès juillet</span>
-                        <span class="data-value">~25h/semaine salle CrossFit</span>
-                    </div>
+            <h2 class="section-title">Ton point A</h2>
+            <div class="data-table">
+                <div class="data-row">
+                    <div class="data-key">Situation actuelle</div>
+                    <div class="data-value">Responsable Orange Bleu + coaching à côté</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Revenus mensuels</div>
+                    <div class="data-value">1 900€ net OB + ~200€ coaching = 2 004€ total</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Coaching actuel</div>
+                    <div class="data-value">~10 clients, uniquement cercle local</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Volume de travail</div>
+                    <div class="data-value">12-15 cours co/semaine, 9h30-21h certains jours</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Présence digitale</div>
+                    <div class="data-value">Stories lifestyle, pas de système d'acquisition</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Acquisition clients</div>
+                    <div class="data-value">Uniquement personnes déjà croisées en salle</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Transition</div>
+                    <div class="data-value">Départ en crossfit dans 1 mois, 25h/semaine</div>
                 </div>
             </div>
-        </section>
-
-        <section class="section">
+        </div>
+        
+        <div class="section">
             <div class="section-number">03</div>
-            <h2>Les chantiers entre toi et la liberté</h2>
-
+            <h2 class="section-title">Les chantiers entre toi et liberté et confort de vie</h2>
+            
             <div class="phase">
-                <span class="phase-label">Chantier 1</span>
-                <h3>Sortir de l'invisibilité</h3>
-                <ul class="chantier-list">
-                    <li>Comment tu passes de stories éphémères à un feed qui qualifie ton expertise — sans que ça fasse "regardez-moi j'ai X places dispo"</li>
-                    <li>Quelle tonalité, quel format, quelle cadence pour que ton contenu capte des gens qui ne te connaissent pas — sans dénaturer ton naturel</li>
-                    <li>Comment tu rends ton profil Insta exploitable en 3 secondes par quelqu'un qui tombe dessus par hasard — bio, offre, call-to-action</li>
-                </ul>
-                <div class="outcome">
+                <div class="phase-label">CHANTIER</div>
+                <div class="phase-header">
+                    <div class="phase-badge">01</div>
+                    <h3 class="phase-title">Transformer ta vitrine en système d'acquisition</h3>
+                </div>
+                <div class="challenge-list">
+                    <div class="challenge-item">Comment tu passes de stories lifestyle à du contenu qui fait venir des inconnus en DM — sans perdre ton authenticité ni devenir un compte promo ?</div>
+                    <div class="challenge-item">À quelle fréquence tu postes, dans quel format, avec quel call-to-action pour que les gens sachent que tu coaches — sans que ça sonne faux ou forcé ?</div>
+                    <div class="challenge-item">Comment tu qualifies un DM entrant pour savoir en 3 messages si la personne vaut un appel ou si tu perds ton temps ?</div>
+                </div>
+                <div class="outcome-box">
                     <div class="outcome-label">Quand c'est réglé</div>
-                    Des gens que t'as jamais vus t'envoient des DM pour te demander tes tarifs. Tu ne cours plus après les clients, ils viennent à toi.
+                    <div class="outcome-text">Tu ne cours plus après les gens que tu connais. Ton compte travaille pour toi. Tu reçois des DM de personnes motivées qui te demandent comment bosser avec toi.</div>
                 </div>
             </div>
-
+            
             <div class="phase">
-                <span class="phase-label">Chantier 2</span>
-                <h3>Qualifier avant de perdre ton temps</h3>
-                <ul class="chantier-list">
-                    <li>Comment tu sais en 3 questions si la personne qui t'écrit a du budget, du temps, et l'intention réelle de bosser avec toi — sans passer pour un robot</li>
-                    <li>Quel système tu mets en place pour filtrer les curieux des acheteurs — avant de prendre un appel d'une heure qui ne mène nulle part</li>
-                    <li>À quel moment tu diriges vers une prise de rendez-vous, à quel moment tu disqualifies poliment, à quel moment tu nourris sans vendre</li>
-                </ul>
-                <div class="outcome">
+                <div class="phase-label">CHANTIER</div>
+                <div class="phase-header">
+                    <div class="phase-badge">02</div>
+                    <h3 class="phase-title">Construire une offre premium qui se vend</h3>
+                </div>
+                <div class="challenge-list">
+                    <div class="challenge-item">À quel prix tu te positionnes pour que ce soit cohérent avec ton expertise, sans te brader ni faire fuir ta cible ?</div>
+                    <div class="challenge-item">Comment tu structures ton suivi pour que ce soit rentable pour toi, impactant pour eux, et scalable sans que tu exploses en charge mentale ?</div>
+                    <div class="challenge-item">Comment tu vends un coaching à 250-350€/mois à quelqu'un qui te suit sur Insta sans que ça ressemble à du forcing ?</div>
+                </div>
+                <div class="outcome-box">
                     <div class="outcome-label">Quand c'est réglé</div>
-                    Tu ne perds plus une heure par semaine à échanger avec des gens qui ghostent. Tu parles qu'à ceux qui sont prêts.
+                    <div class="outcome-text">Tu sais exactement ce que tu vends, à qui, et pourquoi ça vaut ce prix. Tu n'as plus ce moment de doute quand quelqu'un te demande tes tarifs.</div>
                 </div>
             </div>
-
+            
             <div class="phase">
-                <span class="phase-label">Chantier 3</span>
-                <h3>Construire une offre qu'on achète</h3>
-                <ul class="chantier-list">
-                    <li>À quel tarif tu te positionnes pour être crédible sans être hors marché — et comment tu justifies ce prix face à un prospect qui compare</li>
-                    <li>Comment tu structures ton offre pour que ce soit clair, simple, désirable — pas juste "programme perso + suivi"</li>
-                    <li>Comment tu fais le saut de 80€/client à 200-300€/client sans perdre ceux que t'as déjà ni brader ta valeur</li>
-                </ul>
-                <div class="outcome">
+                <div class="phase-label">CHANTIER</div>
+                <div class="phase-header">
+                    <div class="phase-badge">03</div>
+                    <h3 class="phase-title">Passer de 10 clients locaux à 15-20 en distanciel</h3>
+                </div>
+                <div class="challenge-list">
+                    <div class="challenge-item">Comment tu trouves 5 à 10 nouveaux clients par mois qui ne te connaissent pas, qui ne sont pas dans ton cercle, et qui payent plein tarif ?</div>
+                    <div class="challenge-item">Comment tu gères 15-20 suivis en parallèle de ton taf crossfit sans que ça devienne ingérable ou que la qualité chute ?</div>
+                    <div class="challenge-item">Comment tu automatises les quiz, la prise de rdv, les relances pour ne pas passer 2h par jour en prospection manuelle ?</div>
+                </div>
+                <div class="outcome-box">
                     <div class="outcome-label">Quand c'est réglé</div>
-                    Tu signes 5 clients à 250€, t'es déjà à 1 250€/mois. Tu doubles ça, t'es à 2 500€ — tu remplaces ton salaire.
+                    <div class="outcome-text">Tu n'es plus limité par ta zone géographique. Tu coaches qui tu veux, où tu veux. Ton revenu ne dépend plus de qui tu croises à la salle.</div>
                 </div>
             </div>
-
+            
             <div class="phase">
-                <span class="phase-label">Chantier 4</span>
-                <h3>Scaler sans t'épuiser</h3>
-                <ul class="chantier-list">
-                    <li>Comment tu gères 15-20 clients online sans devenir esclave de ton téléphone — process, outils, limites claires</li>
-                    <li>Comment tu crées un système qui tourne même quand tu prends un week-end — automatisation, templates, rituels</li>
-                    <li>Quel modèle entre le full one-to-one, le semi-guidé, le groupe — et lequel correspond à ton style et à ton énergie</li>
-                </ul>
-                <div class="outcome">
+                <div class="phase-label">CHANTIER</div>
+                <div class="phase-header">
+                    <div class="phase-badge">04</div>
+                    <h3 class="phase-title">Sécuriser 2 000€+ en revenu stable et récurrent</h3>
+                </div>
+                <div class="challenge-list">
+                    <div class="challenge-item">Comment tu passes de 200€/mois irréguliers à 2 000€+ stables tous les mois, sans dépendre d'un seul gros client ?</div>
+                    <div class="challenge-item">Comment tu structures ton pricing, tes renouvellements, tes paiements pour que ce soit prévisible et que tu puisses planifier ?</div>
+                    <div class="challenge-item">Comment tu gères la transition entre ton taf salarié et ton coaching en ligne sans paniquer financièrement à mi-chemin ?</div>
+                </div>
+                <div class="outcome-box">
                     <div class="outcome-label">Quand c'est réglé</div>
-                    Tu bosses moins, tu factures plus, tu ne sacrifies plus ta séance ou ta vie perso pour répondre à un DM.
+                    <div class="outcome-text">Tu peux te faire un kiff sans te demander si c'est raisonnable. Tu ne mets plus de côté "au cas où". Tu vis de ta passion sans stress financier.</div>
                 </div>
             </div>
-        </section>
-
-        <section class="section">
+        </div>
+        
+        <div class="section">
             <div class="section-number">04</div>
-            <h2>L'écosystème AdC</h2>
-            <div class="eco-grid">
-                <div class="eco-item">
-                    <div class="eco-item-title">Plateforme</div>
-                    <div class="eco-item-desc">Modules structurés : offre, pricing, positionnement, prospection, scripts</div>
+            <h2 class="section-title">L'écosystème AdC</h2>
+            <div class="ecosystem-grid">
+                <div class="ecosystem-item">
+                    <div class="ecosystem-item-title">Plateforme</div>
+                    <div class="ecosystem-item-desc">Modules + scripts + process clé en main</div>
                 </div>
-                <div class="eco-item">
-                    <div class="eco-item-title">Slack</div>
-                    <div class="eco-item-desc">Support 24/7, communauté CrossFit, canal victoires, entraide réelle</div>
+                <div class="ecosystem-item">
+                    <div class="ecosystem-item-title">Slack 24/7</div>
+                    <div class="ecosystem-item-desc">Communauté active, victoires, support</div>
                 </div>
-                <div class="eco-item">
-                    <div class="eco-item-title">Lives hebdo</div>
-                    <div class="eco-item-desc">4 coachings/semaine : création de contenu, études de cas, masterclass, feedback</div>
+                <div class="ecosystem-item">
+                    <div class="ecosystem-item-title">Lives 4×/sem</div>
+                    <div class="ecosystem-item-desc">Masterclass, études de cas, feedback</div>
                 </div>
-                <div class="eco-item">
-                    <div class="eco-item-title">Partenaires</div>
-                    <div class="eco-item-desc">Agence création de contenu, avocat fiscaliste — intervenants experts</div>
+                <div class="ecosystem-item">
+                    <div class="ecosystem-item-title">Partenaires</div>
+                    <div class="ecosystem-item-desc">Agence contenu, avocat fiscaliste</div>
                 </div>
-                <div class="eco-item">
-                    <div class="eco-item-title">Maëlys</div>
-                    <div class="eco-item-desc">Correction de tes reels Instagram toutes les 2 semaines en live</div>
+                <div class="ecosystem-item">
+                    <div class="ecosystem-item-title">Maëlys + équipe</div>
+                    <div class="ecosystem-item-desc">Feedback réels IG, corrections hebdo</div>
                 </div>
-                <div class="eco-item">
-                    <div class="eco-item-title">Ta cohorte</div>
-                    <div class="eco-item-desc">10 coachs max/mois — qualité > volume, garantie de proximité</div>
+                <div class="ecosystem-item">
+                    <div class="ecosystem-item-title">Cohorte crossfit</div>
+                    <div class="ecosystem-item-desc">Échanges avec coachs même niche</div>
                 </div>
             </div>
-        </section>
-
-        <section class="section">
+        </div>
+        
+        <div class="section">
             <div class="section-number">05</div>
-            <h2>Résultats communauté</h2>
+            <h2 class="section-title">Résultats communauté</h2>
             <div class="results-grid">
                 <div class="result-card">
-                    <span class="result-name">Manon</span>
-                    <span class="result-amount">150 000€</span>
+                    <div class="result-name">Manon</div>
+                    <div class="result-amount" data-count="150000">0</div>
+                    <div class="result-context">de chiffre d'affaires</div>
                 </div>
                 <div class="result-card">
-                    <span class="result-name">Emmerick — janvier</span>
-                    <span class="result-amount">15 000€</span>
+                    <div class="result-name">Emmerick</div>
+                    <div class="result-amount" data-count="15000">0</div>
+                    <div class="result-context">en janvier</div>
                 </div>
                 <div class="result-card">
-                    <span class="result-name">Emmerick + équipe — février</span>
-                    <span class="result-amount">19 000€</span>
+                    <div class="result-name">Emmerick + équipe</div>
+                    <div class="result-amount" data-count="19000">0</div>
+                    <div class="result-context">en février</div>
                 </div>
                 <div class="result-card">
-                    <span class="result-name">Aurélie</span>
-                    <span class="result-amount">7 000€ / semaine</span>
+                    <div class="result-name">Aurélie</div>
+                    <div class="result-amount" data-count="7000">0</div>
+                    <div class="result-context">en une semaine</div>
                 </div>
                 <div class="result-card">
-                    <span class="result-name">Nouvelle coach — 1 mois de 0</span>
-                    <span class="result-amount">3 300€</span>
+                    <div class="result-name">Nouvelle coach</div>
+                    <div class="result-amount" data-count="3300">0</div>
+                    <div class="result-context">en 1 mois partie de 0</div>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 24px;">
-                <a href="https://drive.google.com/drive/folders/1fk6fHzGKUbFWrXez6Cm4EPabMdCrkd0V" class="btn" target="_blank">Voir tous les témoignages</a>
-            </div>
-        </section>
-
-        <section class="section">
+            <a href="https://drive.google.com/drive/folders/1fk6fHzGKUbFWrXez6Cm4EPabMdCrkd0V" target="_blank" class="btn-pill">Voir tous les témoignages</a>
+        </div>
+        
+        <div class="section">
             <div class="section-number">06</div>
-            <h2>Ton accès</h2>
+            <h2 class="section-title">Ton accès</h2>
             <div class="pricing-grid">
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">POUR TOI</div>
-                    <div class="pricing-price">5 000€</div>
-                    <div class="pricing-subtitle">Paiement en 3-4 fois disponible</div>
-                    <ul class="pricing-features">
-                        <li>Plateforme + Slack + lives à vie</li>
-                        <li>Coach attitré 1-to-1 pendant 12 semaines</li>
-                        <li>Plan d'action personnalisé chaque semaine</li>
-                        <li>Garantie 3-10k€/mois en 90 jours</li>
-                        <li>Accès communauté CrossFit</li>
-                    </ul>
-                </div>
                 <div class="pricing-card">
-                    <div class="pricing-price">1 500€</div>
-                    <div class="pricing-subtitle">Paiement en 3-4 fois disponible</div>
-                    <ul class="pricing-features">
-                        <li>Plateforme + Slack + lives à vie</li>
-                        <li>4 coachings de groupe/semaine</li>
-                        <li>Support communauté 24/7</li>
-                        <li>Sans coach attitré 1-to-1</li>
-                        <li>Sans garantie de résultat</li>
-                    </ul>
+                    <div class="pricing-amount">1 500€</div>
+                    <div class="pricing-period">Paiement en 3-4× disponible</div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">Accès plateforme à vie</div>
+                        <div class="pricing-feature">Slack communauté 24/7</div>
+                        <div class="pricing-feature">4 lives par semaine + replays</div>
+                        <div class="pricing-feature">Mises à jour permanentes</div>
+                    </div>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-amount">5 000€</div>
+                    <div class="pricing-period">Paiement en 3-4× disponible</div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">Tout du plan précédent</div>
+                        <div class="pricing-feature">12 semaines de coaching 1-to-1 hebdomadaire</div>
+                        <div class="pricing-feature">Feuille de route personnalisée chaque semaine</div>
+                        <div class="pricing-feature">Garantie 3 000-10 000€/mois en 90 jours</div>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <section class="closing">
-            <h2>Alors Gwen, qu'est-ce que t'attends ?</h2>
-            <p>Tu sais où t'en es. Tu sais où tu veux aller. Tu sais ce qu'il reste à régler. Dans 6 mois, soit tu vis de ce que t'aimes, soit t'es encore à Orange Bleu à te demander quand tu vas sauter. La seule chose qui change : la décision que tu prends maintenant.</p>
-            <a href="https://wa.me/33756288802?text=Bonjour%2C%20c%27est%20Gwen.%20J%27ai%20lu%20ma%20feuille%20de%20route%20et%20je%20veux%20%C3%A9changer." class="btn btn-primary">Je suis prêt, on lance</a>
-        </section>
-
-        <footer>
+        </div>
+        
+        <div class="closing">
+            <h2 class="closing-title">Alors Gwen, qu'est-ce que t'attends ?</h2>
+            <p class="closing-text">Tu sais où t'en es. Tu sais où tu veux aller. Tu sais ce qu'il reste à régler. Dans 6 mois, soit tu vis de ta passion sans te poser de questions, soit tu es encore en train de te demander si c'est le bon moment. La seule chose qui change : la décision que tu prends maintenant.</p>
+            <a href="https://wa.me/33756288802?text=Bonjour%2C%20c%27est%20Gwen.%20J%27ai%20lu%20ma%20feuille%20de%20route%20et%20je%20veux%20%C3%A9changer." target="_blank" class="btn-cta">Je suis prêt, on lance</a>
+        </div>
+        
+        <div class="footer">
             L'Académie des Coachs · Document préparé pour Gwen Auber
-        </footer>
+        </div>
     </div>
-</body>
-</html>
+    
+    <script>
+        function animateCount(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString('fr-FR') + '€';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString('fr-FR') + '€';
+                }
+            }, 16);
+        }
+        
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
