@@ -42,9 +42,9 @@ def list_meetings(limit=50):
 
 
 def is_adc_meeting(meeting):
-    haystack = json.dumps(meeting).lower()
-    matches = any(kw in haystack for kw in ADC_KEYWORDS)
-    excluded = any(kw in haystack for kw in ADC_EXCLUDE)
+    title = str(meeting.get("title", "")).lower()
+    matches = any(kw in title for kw in ADC_KEYWORDS)
+    excluded = any(kw in title for kw in ADC_EXCLUDE)
     return matches and not excluded
 
 
