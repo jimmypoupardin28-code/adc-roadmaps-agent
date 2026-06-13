@@ -1,667 +1,732 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feuille de route · Kevin</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feuille de route - Kevin AUDEFROY</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background: #0A0A0B;
-            color: #fff;
-            line-height: 1.6;
-            font-weight: 300;
-            overflow-x: hidden;
-        }
+body {
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+background: #0A0A0B;
+color: #FFFFFF;
+line-height: 1.6;
+font-weight: 300;
+overflow-x: hidden;
+}
 
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
-        }
+.orb {
+position: fixed;
+border-radius: 50%;
+filter: blur(120px);
+opacity: 0.15;
+pointer-events: none;
+z-index: 0;
+}
 
-        .orb-1 {
-            width: 600px;
-            height: 600px;
-            background: #C0272D;
-            top: -200px;
-            right: -200px;
-        }
+.orb-1 {
+width: 600px;
+height: 600px;
+background: #C0272D;
+top: -300px;
+right: -200px;
+}
 
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: #C0272D;
-            bottom: -150px;
-            left: -150px;
-        }
+.orb-2 {
+width: 500px;
+height: 500px;
+background: #C0272D;
+bottom: -250px;
+left: -150px;
+}
 
-        .container {
-            max-width: 460px;
-            margin: 0 auto;
-            padding: 32px 20px;
-            position: relative;
-            z-index: 1;
-        }
+.container {
+max-width: 460px;
+margin: 0 auto;
+padding: 24px 20px;
+position: relative;
+z-index: 1;
+}
 
-        .header {
-            margin-bottom: 48px;
-        }
+.header {
+margin-bottom: 48px;
+padding-top: 20px;
+}
 
-        .header h1 {
-            font-size: 28px;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
+.header h1 {
+font-size: 28px;
+font-weight: 400;
+line-height: 1.2;
+margin-bottom: 16px;
+letter-spacing: -0.02em;
+}
 
-        .header h1 .highlight {
-            color: #C0272D;
-        }
+.header h1 .highlight {
+color: #C0272D;
+}
 
-        .header p {
-            font-size: 15px;
-            color: rgba(255,255,255,0.6);
-            font-weight: 300;
-        }
+.header p {
+font-size: 15px;
+color: rgba(255,255,255,0.6);
+font-weight: 300;
+}
 
-        .glass {
-            background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 32px;
-        }
+.glass {
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 16px;
+padding: 24px;
+margin-bottom: 32px;
+backdrop-filter: blur(10px);
+}
 
-        .glass p {
-            font-size: 15px;
-            margin-bottom: 16px;
-            font-weight: 300;
-        }
+.glass p {
+font-size: 15px;
+margin-bottom: 16px;
+color: rgba(255,255,255,0.85);
+font-weight: 300;
+}
 
-        .glass p:last-child {
-            margin-bottom: 0;
-        }
+.glass p:last-child {
+margin-bottom: 0;
+}
 
-        .glass strong {
-            font-weight: 500;
-            color: #fff;
-        }
+.glass strong {
+font-weight: 500;
+color: #FFFFFF;
+}
 
-        section {
-            margin-bottom: 64px;
-        }
+.section {
+margin-bottom: 56px;
+}
 
-        .section-number {
-            font-size: 13px;
-            color: #C0272D;
-            font-weight: 500;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
+.section-number {
+font-size: 13px;
+font-weight: 500;
+color: #C0272D;
+margin-bottom: 8px;
+letter-spacing: 0.05em;
+}
 
-        h2 {
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 24px;
-            line-height: 1.3;
-        }
+.section-title {
+font-size: 22px;
+font-weight: 400;
+margin-bottom: 24px;
+letter-spacing: -0.01em;
+}
 
-        .vision-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+.vision-grid {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
 
-        .vision-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            padding: 16px;
-            font-size: 15px;
-            font-weight: 300;
-        }
+.vision-item {
+background: rgba(192, 39, 45, 0.08);
+border: 1px solid rgba(192, 39, 45, 0.2);
+border-radius: 12px;
+padding: 16px;
+font-size: 15px;
+font-weight: 300;
+}
 
-        .vision-item.primary {
-            background: rgba(192,39,45,0.08);
-            border-color: rgba(192,39,45,0.3);
-        }
+.vision-item.primary {
+background: rgba(192, 39, 45, 0.15);
+border-color: rgba(192, 39, 45, 0.4);
+font-weight: 400;
+}
 
-        .table {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            overflow: hidden;
-        }
+.table {
+display: flex;
+flex-direction: column;
+gap: 1px;
+background: rgba(255,255,255,0.06);
+border-radius: 12px;
+overflow: hidden;
+}
 
-        .table-row {
-            display: flex;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            font-size: 14px;
-        }
+.table-row {
+display: flex;
+background: rgba(10, 10, 11, 0.8);
+padding: 14px 18px;
+}
 
-        .table-row:last-child {
-            border-bottom: none;
-        }
+.table-key {
+flex: 1;
+font-size: 14px;
+color: rgba(255,255,255,0.5);
+font-weight: 300;
+}
 
-        .table-key {
-            flex: 1;
-            padding: 16px;
-            color: rgba(255,255,255,0.5);
-            font-weight: 300;
-        }
+.table-value {
+flex: 1.2;
+font-size: 14px;
+color: #FFFFFF;
+font-weight: 400;
+text-align: right;
+}
 
-        .table-value {
-            flex: 1;
-            padding: 16px;
-            font-weight: 400;
-            text-align: right;
-        }
+.phase {
+margin-bottom: 40px;
+}
 
-        .chantier {
-            margin-bottom: 48px;
-        }
+.phase-header {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 20px;
+}
 
-        .chantier-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
+.phase-badge {
+background: #C0272D;
+color: #FFFFFF;
+font-size: 12px;
+font-weight: 500;
+padding: 6px 12px;
+border-radius: 20px;
+letter-spacing: 0.03em;
+}
 
-        .badge {
-            background: #C0272D;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 500;
-            padding: 6px 12px;
-            border-radius: 20px;
-            letter-spacing: 0.5px;
-        }
+.phase-title {
+font-size: 18px;
+font-weight: 400;
+color: #FFFFFF;
+}
 
-        .chantier-label {
-            font-size: 12px;
-            color: rgba(255,255,255,0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
+.phase-label {
+font-size: 11px;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+color: rgba(255,255,255,0.4);
+margin-bottom: 8px;
+font-weight: 500;
+}
 
-        .chantier h3 {
-            font-size: 20px;
-            font-weight: 400;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
+.chantier-list {
+display: flex;
+flex-direction: column;
+gap: 12px;
+margin-bottom: 20px;
+}
 
-        .chantier-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
+.chantier-item {
+padding-left: 20px;
+position: relative;
+font-size: 15px;
+color: rgba(255,255,255,0.8);
+font-weight: 300;
+}
 
-        .chantier-item {
-            padding-left: 20px;
-            position: relative;
-            font-size: 15px;
-            font-weight: 300;
-            color: rgba(255,255,255,0.85);
-        }
+.chantier-item:before {
+content: '—';
+position: absolute;
+left: 0;
+color: #C0272D;
+}
 
-        .chantier-item:before {
-            content: '·';
-            position: absolute;
-            left: 0;
-            color: #C0272D;
-            font-size: 20px;
-        }
+.outcome {
+background: rgba(255, 255, 255, 0.04);
+border-left: 3px solid #C0272D;
+padding: 16px;
+border-radius: 8px;
+margin-top: 20px;
+}
 
-        .outcome {
-            background: rgba(192,39,45,0.06);
-            border-left: 3px solid #C0272D;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 300;
-        }
+.outcome-label {
+font-size: 12px;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+color: #C0272D;
+margin-bottom: 8px;
+font-weight: 500;
+}
 
-        .outcome-label {
-            color: #C0272D;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
+.outcome-text {
+font-size: 14px;
+color: rgba(255,255,255,0.75);
+font-weight: 300;
+font-style: italic;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
+.ecosystem-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
 
-        .card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
+.eco-card {
+background: rgba(255, 255, 255, 0.04);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 12px;
+padding: 16px;
+}
 
-        .card h4 {
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 8px;
-        }
+.eco-title {
+font-size: 14px;
+font-weight: 500;
+margin-bottom: 6px;
+color: #FFFFFF;
+}
 
-        .card p {
-            font-size: 13px;
-            color: rgba(255,255,255,0.5);
-            font-weight: 300;
-        }
+.eco-desc {
+font-size: 13px;
+color: rgba(255,255,255,0.6);
+font-weight: 300;
+}
 
-        .result-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.results-grid {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
 
-        .result-name {
-            font-size: 15px;
-            font-weight: 400;
-        }
+.result-card {
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 12px;
+padding: 18px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
 
-        .result-amount {
-            font-size: 20px;
-            font-weight: 400;
-            color: #C0272D;
-        }
+.result-name {
+font-size: 15px;
+font-weight: 400;
+color: #FFFFFF;
+}
 
-        .result-detail {
-            font-size: 12px;
-            color: rgba(255,255,255,0.4);
-            margin-top: 4px;
-        }
+.result-amount {
+font-size: 18px;
+font-weight: 500;
+color: #C0272D;
+}
 
-        .pill-btn {
-            display: inline-block;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 24px;
-            border-radius: 24px;
-            font-size: 14px;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            margin-top: 16px;
-        }
+.btn {
+display: inline-block;
+text-decoration: none;
+text-align: center;
+border-radius: 25px;
+font-size: 14px;
+font-weight: 500;
+transition: all 0.3s ease;
+cursor: pointer;
+}
 
-        .pill-btn:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.25);
-        }
+.btn-pill {
+background: rgba(255, 255, 255, 0.06);
+border: 1px solid rgba(255, 255, 255, 0.12);
+color: #FFFFFF;
+padding: 12px 24px;
+width: 100%;
+margin-top: 12px;
+}
 
-        .price-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+.btn-pill:hover {
+background: rgba(255, 255, 255, 0.1);
+}
 
-        .price-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 24px;
-        }
+.pricing-grid {
+display: flex;
+flex-direction: column;
+gap: 16px;
+margin-bottom: 24px;
+}
 
-        .price-card.featured {
-            background: rgba(192,39,45,0.08);
-            border-color: rgba(192,39,45,0.3);
-        }
+.pricing-card {
+background: rgba(255, 255, 255, 0.04);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+padding: 24px;
+}
 
-        .price-header {
-            margin-bottom: 16px;
-        }
+.pricing-card.featured {
+border-color: #C0272D;
+background: rgba(192, 39, 45, 0.08);
+}
 
-        .price-amount {
-            font-size: 36px;
-            font-weight: 400;
-            color: #C0272D;
-            margin-bottom: 8px;
-        }
+.pricing-header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+margin-bottom: 16px;
+}
 
-        .price-detail {
-            font-size: 13px;
-            color: rgba(255,255,255,0.5);
-        }
+.pricing-name {
+font-size: 16px;
+font-weight: 500;
+color: #FFFFFF;
+}
 
-        .price-features {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 16px;
-            font-size: 14px;
-            font-weight: 300;
-        }
+.pricing-amount {
+font-size: 28px;
+font-weight: 400;
+color: #C0272D;
+}
 
-        .price-feature {
-            padding-left: 20px;
-            position: relative;
-        }
+.pricing-features {
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin-bottom: 16px;
+}
 
-        .price-feature:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #C0272D;
-        }
+.pricing-feature {
+font-size: 14px;
+color: rgba(255,255,255,0.75);
+padding-left: 20px;
+position: relative;
+font-weight: 300;
+}
 
-        .closing {
-            text-align: center;
-            margin-top: 80px;
-        }
+.pricing-feature:before {
+content: '✓';
+position: absolute;
+left: 0;
+color: #C0272D;
+font-weight: 500;
+}
 
-        .closing h2 {
-            font-size: 26px;
-            margin-bottom: 20px;
-        }
+.pricing-note {
+font-size: 12px;
+color: rgba(255,255,255,0.5);
+margin-top: 12px;
+font-weight: 300;
+}
 
-        .closing p {
-            font-size: 15px;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 32px;
-            line-height: 1.6;
-        }
+.closing {
+text-align: center;
+margin: 56px 0;
+}
 
-        .cta-btn {
-            display: inline-block;
-            background: #C0272D;
-            color: #fff;
-            text-decoration: none;
-            padding: 16px 32px;
-            border-radius: 28px;
-            font-size: 16px;
-            font-weight: 400;
-            transition: all 0.3s ease;
-        }
+.closing-title {
+font-size: 24px;
+font-weight: 400;
+margin-bottom: 20px;
+}
 
-        .cta-btn:hover {
-            background: #a02226;
-            transform: translateY(-2px);
-        }
+.closing-text {
+font-size: 15px;
+color: rgba(255,255,255,0.8);
+margin-bottom: 32px;
+font-weight: 300;
+line-height: 1.7;
+}
 
-        footer {
-            text-align: center;
-            padding: 32px 0;
-            color: rgba(255,255,255,0.3);
-            font-size: 13px;
-            font-weight: 300;
-        }
-    </style>
+.btn-cta {
+background: #C0272D;
+color: #FFFFFF;
+padding: 16px 32px;
+font-size: 15px;
+width: 100%;
+border: none;
+}
+
+.btn-cta:hover {
+background: #A02228;
+}
+
+.footer {
+text-align: center;
+padding: 32px 0;
+font-size: 13px;
+color: rgba(255,255,255,0.4);
+border-top: 1px solid rgba(255,255,255,0.06);
+font-weight: 300;
+}
+
+.count-up {
+display: inline-block;
+}
+</style>
 </head>
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    
-    <div class="container">
-        <div class="header">
-            <h1>Tout ce qu'il reste à régler pour <span class="highlight">relancer la machine sans te faire chier</span>.</h1>
-            <p>Pas un argumentaire. Voilà ce que j'ai retenu, voilà le chemin qu'il reste.</p>
-        </div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
 
-        <div class="glass">
-            <p><strong>Tu es à l'arrêt depuis quelques mois.</strong> Tu as stoppé le contenu, les ads, le setting. Tu as fait le choix de te concentrer sur tes clients actuels et ton présentiel. Burnout du digital, lassé des réseaux, fatigué de passer plus de temps sur Instagram qu'à coacher.</p>
-            <p><strong>Mais tu as déjà fait tes preuves.</strong> 15 ans de coaching, 10 ans dans le digital. Tu as bossé avec Brian, Loan. Tu as eu des périodes où les rendez-vous se bookaient tous les jours. Tu as déjà eu un setter, un closer, une petite équipe. Tu sais ce que c'est de tourner.</p>
-            <p>Ce doc c'est le pont entre ton point mort et la machine qui tourne sans toi. On en reparle au call.</p>
-        </div>
+<div class="container">
+<div class="header">
+<h1>Tout ce qu'il reste à régler pour <span class="highlight">sortir du burnout et relancer la machine sans te faire chier</span>.</h1>
+<p>Pas un argumentaire. Voilà ce que j'ai retenu, voilà le chemin qu'il reste.</p>
+</div>
 
-        <section>
-            <div class="section-number">01</div>
-            <h2>Ton point B</h2>
-            <div class="vision-grid">
-                <div class="vision-item primary">Relancer la machine sans te faire chier avec le setting et Instagram</div>
-                <div class="vision-item">Une petite équipe de confiance qui bosse : setter, closer, peut-être des coachs</div>
-                <div class="vision-item">Du temps pour ta passion : coacher, pas être entrepreneur digital à plein temps</div>
-                <div class="vision-item">Un système qui tourne en organique, sans injecter 100 balles de pub par jour</div>
-            </div>
-        </section>
+<div class="glass">
+<p><strong>Ton point A :</strong> 15 ans de coaching, dont 10 en digital. Tu maîtrises ton métier. Tu as déjà bossé avec Loan, Brian, monté des tunnels, des VSL, des ads. Tu as eu des périodes à 80h/semaine en présentiel pour un SMIC. Tu as fait du 6–23h en club. Tu as tout arrêté il y a 3 ans. Retenté il y a un an. Mais là, overdose. Instagram mort. Setting chiant. 0 rendez-vous depuis des mois.</p>
+<p><strong>Ce que tu as déjà accompli :</strong> Tu as déjà signé des clients sans rien faire à l'époque. Tu as bossé avec des closers, des setters, une petite équipe. Tu connais le process. Tu sais closer. Le problème, c'est pas la compétence. C'est l'acquisition. Et le fait que tu en as plein le cul de tout gérer seul.</p>
+<p><strong>Ce doc, c'est le pont.</strong> Entre là où tu es et là où tu veux être. On en reparle au call.</p>
+</div>
 
-        <section>
-            <div class="section-number">02</div>
-            <h2>Ton point A</h2>
-            <div class="table">
-                <div class="table-row">
-                    <div class="table-key">Situation actuelle</div>
-                    <div class="table-value">Instagram en pause depuis plusieurs mois</div>
-                </div>
-                <div class="table-row">
-                    <div class="table-key">Contenu</div>
-                    <div class="table-value">0 post, machine à l'arrêt</div>
-                </div>
-                <div class="table-row">
-                    <div class="table-key">Acquisition</div>
-                    <div class="table-value">Quelques clients qui viennent d'eux-mêmes</div>
-                </div>
-                <div class="table-row">
-                    <div class="table-key">Équipe</div>
-                    <div class="table-value">Aucune (setter/closer stoppés)</div>
-                </div>
-                <div class="table-row">
-                    <div class="table-key">Avatar</div>
-                    <div class="table-value">En transition : hommes 30-45 ans</div>
-                </div>
-                <div class="table-row">
-                    <div class="table-key">Expérience</div>
-                    <div class="table-value">15 ans coaching, 10 ans digital</div>
-                </div>
-                <div class="table-row">
-                    <div class="table-key">Infrastructures</div>
-                    <div class="table-value">Tunnels, VSL, pages prêtes (à revoir)</div>
-                </div>
-            </div>
-        </section>
+<div class="section">
+<div class="section-number">01</div>
+<h2 class="section-title">Ton point B</h2>
+<div class="vision-grid">
+<div class="vision-item primary">Ne plus être en burnout. Relancer la machine sans que ça te saoule.</div>
+<div class="vision-item">Avoir une petite équipe qui tourne : setter, closer, et toi concentré sur le coaching.</div>
+<div class="vision-item">Générer des rendez-vous qualifiés en organique, sans te bouffer 3 réels par jour pour rien.</div>
+<div class="vision-item">Retrouver du plaisir dans ton métier de coach, sans subir l'entrepreneur.</div>
+</div>
+</div>
 
-        <section>
-            <div class="section-number">03</div>
-            <h2>Les chantiers entre toi et relancer la machine</h2>
+<div class="section">
+<div class="section-number">02</div>
+<h2 class="section-title">Ton point A</h2>
+<div class="table">
+<div class="table-row">
+<div class="table-key">Expérience coaching</div>
+<div class="table-value">15 ans (dont 10 digital)</div>
+</div>
+<div class="table-row">
+<div class="table-key">Situation actuelle</div>
+<div class="table-value">Burnout digital, Insta mort</div>
+</div>
+<div class="table-row">
+<div class="table-key">RDV/mois</div>
+<div class="table-value">0 depuis plusieurs mois</div>
+</div>
+<div class="table-row">
+<div class="table-key">Avatar client</div>
+<div class="table-value">Hommes 30-45 ans</div>
+</div>
+<div class="table-row">
+<div class="table-key">Ressources existantes</div>
+<div class="table-value">Tunnels, VSL, expérience ads</div>
+</div>
+<div class="table-row">
+<div class="table-key">Blocage principal</div>
+<div class="table-value">Setting chiant + acquisition</div>
+</div>
+<div class="table-row">
+<div class="table-key">Dernière tentative</div>
+<div class="table-value">3-4 mois à poster 2-3 réels/jour</div>
+</div>
+<div class="table-row">
+<div class="table-key">Résultat</div>
+<div class="table-value">Épuisement, 0 résultat</div>
+</div>
+</div>
+</div>
 
-            <div class="chantier">
-                <div class="chantier-label">Chantier</div>
-                <div class="chantier-header">
-                    <div class="badge">01</div>
-                    <h3>Repartir sur du contenu qui rapporte sans te drainer</h3>
-                </div>
-                <div class="chantier-list">
-                    <div class="chantier-item">Qu'est-ce que tu postes pour que ça serve ton avatar homme 30-45 ans sans copier ce qui se fait partout</div>
-                    <div class="chantier-item">Comment tu fais une semaine de contenu en 2h au lieu de te forcer à balancer 2-3 reels par jour qui te saoulent</div>
-                    <div class="chantier-item">Comment tu automatises la prospection et la qualification sans faire du ManyChat qui fait faux</div>
-                </div>
-                <div class="outcome">
-                    <div class="outcome-label">Quand c'est réglé</div>
-                    Tu postes sans te prendre la tête. Tu sais ce qui convertit. Tu ne passes plus ta vie sur Instagram.
-                </div>
-            </div>
+<div class="section">
+<div class="section-number">03</div>
+<h2 class="section-title">Les chantiers entre toi et sortir du burnout pour relancer la machine</h2>
 
-            <div class="chantier">
-                <div class="chantier-label">Chantier</div>
-                <div class="chantier-header">
-                    <div class="badge">02</div>
-                    <h3>Revoir ton infrastructure pour qu'elle match ton nouvel avatar</h3>
-                </div>
-                <div class="chantier-list">
-                    <div class="chantier-item">Tes VSL et tunnels sont faits pour des femmes — comment tu les refais pour parler à des mecs de 30-45 ans sans tout reconstruire</div>
-                    <div class="chantier-item">Quel prix tu annonces pour cet avatar et comment tu justifies la valeur sans perdre en crédibilité</div>
-                    <div class="chantier-item">Comment tu optimises ton profil, ta bio, tes stories pour que ça fonctionne en organique immédiatement</div>
-                </div>
-                <div class="outcome">
-                    <div class="outcome-label">Quand c'est réglé</div>
-                    Ton tunnel convertit. Ton profil attire le bon prospect. Tu n'as plus à refaire ce qui a déjà coûté 600 balles.
-                </div>
-            </div>
+<div class="phase">
+<div class="phase-label">Chantier</div>
+<div class="phase-header">
+<div class="phase-badge">01</div>
+<div class="phase-title">Relancer l'acquisition sans te cramer</div>
+</div>
+<div class="chantier-list">
+<div class="chantier-item">Comment tu génères des RDV qualifiés en organique sans te taper 3 réels par jour qui te saoulent</div>
+<div class="chantier-item">Quelle stratégie de contenu te permet de créer 1 semaine en 2h max — et surtout, qu'est-ce qui marche vraiment avec ton avatar homme 30-45 ans</div>
+<div class="chantier-item">Comment tu automatises la qualification (ManyChat, setting) sans que ça fasse robot de merde et que tu perdes le feeling</div>
+</div>
+<div class="outcome">
+<div class="outcome-label">Quand c'est réglé</div>
+<div class="outcome-text">Tu postes sans pression. Les DM arrivent. Tu sais qui est chaud, qui est froid. Tu passes 2h le dimanche, t'es tranquille la semaine.</div>
+</div>
+</div>
 
-            <div class="chantier">
-                <div class="chantier-label">Chantier</div>
-                <div class="chantier-header">
-                    <div class="badge">03</div>
-                    <h3>Mettre en place ton setter et ton closer sans te faire chier</h3>
-                </div>
-                <div class="chantier-list">
-                    <div class="chantier-item">Où tu trouves un setter qui bosse à la performance et qui ne te réclame pas un fixe + bonus comme tous les autres</div>
-                    <div class="chantier-item">Comment tu le formes, tu le管理s et tu le tracks sans que ça devienne un job à plein temps</div>
-                    <div class="chantier-item">Quel process tu mets en place pour que les rendez-vous soient qualifiés et que tu ne perdes pas ton temps avec des fantômes</div>
-                </div>
-                <div class="outcome">
-                    <div class="outcome-label">Quand c'est réglé</div>
-                    Les appels arrivent. Qualifiés. Tu n'as plus à faire le setting. Tu coaches, point.
-                </div>
-            </div>
+<div class="phase">
+<div class="phase-label">Chantier</div>
+<div class="phase-header">
+<div class="phase-badge">02</div>
+<div class="phase-title">Structurer ton équipe sans te faire niquer</div>
+</div>
+<div class="chantier-list">
+<div class="chantier-item">Comment tu trouves un setter qui bosse à la perf, qui connaît ton marché, et comment tu le formes sans y passer des semaines</div>
+<div class="chantier-item">Quel deal tu lui proposes (5% ?, fixe + variable ?, combien de prospects par semaine minimum) pour qu'il soit motivé sans te coûter un bras</div>
+<div class="chantier-item">Comment tu le manages, tu le tracks, et tu sais si ça marche — sans devenir chef d'équipe à plein temps</div>
+</div>
+<div class="outcome">
+<div class="outcome-label">Quand c'est réglé</div>
+<div class="outcome-text">Tu reçois des notifs "RDV booké". T'arrives à l'appel, le mec est chaud. Tu coaches, tu signes, tu délivres. Le reste, c'est plus ton problème.</div>
+</div>
+</div>
 
-            <div class="chantier">
-                <div class="chantier-label">Chantier</div>
-                <div class="chantier-header">
-                    <div class="badge">04</div>
-                    <h3>Structurer ton business pour scaler sans exploser</h3>
-                </div>
-                <div class="chantier-list">
-                    <div class="chantier-item">Comment tu gères la tréso, les paiements setter/closer, la fiscalité si tu exploses ton plafond sans te faire avoir</div>
-                    <div class="chantier-item">Comment tu construis une petite équipe de coachs si tu veux déléguer sans perdre en qualité de délivrance</div>
-                    <div class="chantier-item">Comment tu sors de la logique présentiel 80h/semaine pour un SMIC et tu passes en full remote rentable</div>
-                </div>
-                <div class="outcome">
-                    <div class="outcome-label">Quand c'est réglé</div>
-                    Tu tournes propre. Tu dégages du cash. Tu vis sans sacrifier ta vie perso. Tu es libre.
-                </div>
-            </div>
-        </section>
+<div class="phase">
+<div class="phase-label">Chantier</div>
+<div class="phase-header">
+<div class="phase-badge">03</div>
+<div class="phase-title">Recaler ton positionnement et ton offre</div>
+</div>
+<div class="chantier-list">
+<div class="chantier-item">Est-ce que ton offre actuelle parle vraiment à ton nouvel avatar homme, ou t'es encore entre deux eaux avec des restes de l'ancienne cible femme</div>
+<div class="chantier-item">À quel prix tu te positionnes pour être crédible, rentable, et pas en compétition avec les coachs présentiel à 50 balles</div>
+<div class="chantier-item">Comment tu adaptes ton tunnel, ta VSL, ta bio Instagram pour que tout soit aligné sur cet avatar et que l'algo capte enfin qui tu veux attirer</div>
+</div>
+<div class="outcome">
+<div class="outcome-label">Quand c'est réglé</div>
+<div class="outcome-text">Ton Insta attire le bon profil. Ton offre est claire. Tu parles à des mecs qui te ressemblent, qui ont les moyens, qui veulent bosser. Fini les curieux.</div>
+</div>
+</div>
 
-        <section>
-            <div class="section-number">04</div>
-            <h2>L'écosystème AdC</h2>
-            <div class="grid">
-                <div class="card">
-                    <h4>Plateforme</h4>
-                    <p>School avec 3 ans de modules, scripts, ressources à vie</p>
-                </div>
-                <div class="card">
-                    <h4>Slack</h4>
-                    <p>Canaux dédiés, réactivité immédiate, communauté active</p>
-                </div>
-                <div class="card">
-                    <h4>Lives hebdo</h4>
-                    <p>Création contenu, setting, closing, stratégie — à vie</p>
-                </div>
-                <div class="card">
-                    <h4>Partenaires</h4>
-                    <p>Agence montage, fiscaliste, média buyer intégrés</p>
-                </div>
-                <div class="card">
-                    <h4>Maëlys</h4>
-                    <p>Réactive, cash, 10 ans dans le game, 0 bullshit</p>
-                </div>
-                <div class="card">
-                    <h4>Cohorte</h4>
-                    <p>Max 10 coachs/mois, taux de réussite 100%</p>
-                </div>
-            </div>
-        </section>
+<div class="phase">
+<div class="phase-label">Chantier</div>
+<div class="phase-header">
+<div class="phase-badge">04</div>
+<div class="phase-title">Te libérer du reste pour coacher</div>
+</div>
+<div class="chantier-list">
+<div class="chantier-item">Comment tu délègues le setting, le closing si besoin, le montage vidéo, sans perdre en qualité ni en authenticité</div>
+<div class="chantier-item">Quelle structure tu mets en place (Slack, tableaux de reporting, process clairs) pour suivre ton business en 30 min/jour max</div>
+<div class="chantier-item">Comment tu sors enfin de cette putain de roue de hamster où t'es entrepreneur 90% du temps et coach 10%</div>
+</div>
+<div class="outcome">
+<div class="outcome-label">Quand c'est réglé</div>
+<div class="outcome-text">Tu te réveilles. Tu coaches. Tu vis. Le business tourne. T'as retrouvé ta passion. T'as plus envie de tout cramer.</div>
+</div>
+</div>
+</div>
 
-        <section>
-            <div class="section-number">05</div>
-            <h2>Résultats communauté</h2>
-            <div class="result-item">
-                <div>
-                    <div class="result-name">Manon</div>
-                </div>
-                <div class="result-amount">150 000€</div>
-            </div>
-            <div class="result-item">
-                <div>
-                    <div class="result-name">Emmerick</div>
-                    <div class="result-detail">Janvier</div>
-                </div>
-                <div class="result-amount">15 000€</div>
-            </div>
-            <div class="result-item">
-                <div>
-                    <div class="result-name">Emmerick + équipe</div>
-                    <div class="result-detail">Février</div>
-                </div>
-                <div class="result-amount">19 000€</div>
-            </div>
-            <div class="result-item">
-                <div>
-                    <div class="result-name">Aurélie</div>
-                    <div class="result-detail">En une semaine</div>
-                </div>
-                <div class="result-amount">7 000€</div>
-            </div>
-            <div class="result-item">
-                <div>
-                    <div class="result-name">Nouvelle coach</div>
-                    <div class="result-detail">1 mois, partie de 0</div>
-                </div>
-                <div class="result-amount">3 300€</div>
-            </div>
-            <a href="https://drive.google.com/drive/folders/1fk6fHzGKUbFWrXez6Cm4EPabMdCrkd0V" class="pill-btn" target="_blank">Voir tous les témoignages</a>
-        </section>
+<div class="section">
+<div class="section-number">04</div>
+<h2 class="section-title">L'écosystème AdC</h2>
+<div class="ecosystem-grid">
+<div class="eco-card">
+<div class="eco-title">Plateforme</div>
+<div class="eco-desc">Modules, blueprints, scripts, prompts, funnels, VSL — tout téléchargeable</div>
+</div>
+<div class="eco-card">
+<div class="eco-title">Slack</div>
+<div class="eco-desc">Canaux dédiés, réponses rapides, communauté active</div>
+</div>
+<div class="eco-card">
+<div class="eco-title">Lives hebdo</div>
+<div class="eco-desc">Experts création contenu, setting, closing, ads — replays 3 ans dispo</div>
+</div>
+<div class="eco-card">
+<div class="eco-title">Partenaires</div>
+<div class="eco-desc">Agence montage (PACOM), média buyer, fiscaliste, réseau setters/closers</div>
+</div>
+<div class="eco-card">
+<div class="eco-title">Maëlys</div>
+<div class="eco-desc">Retours réels toutes les 2 semaines, joignable, réactive</div>
+</div>
+<div class="eco-card">
+<div class="eco-title">Cohorte</div>
+<div class="eco-desc">Max 10 personnes/mois — taux de réussite 100%</div>
+</div>
+</div>
+</div>
 
-        <section>
-            <div class="section-number">06</div>
-            <h2>Ton accès</h2>
-            <div class="price-cards">
-                <div class="price-card featured">
-                    <div class="price-header">
-                        <div class="price-amount">5 000€</div>
-                        <div class="price-detail">Paiement 1×, 2× ou 3× possible</div>
-                    </div>
-                    <div class="price-features">
-                        <div class="price-feature">Plateforme + Slack + Lives à vie</div>
-                        <div class="price-feature">3 mois coaching 1-to-1 hebdomadaire</div>
-                        <div class="price-feature">Garantie 3 000-10 000€/mois en 90 jours</div>
-                        <div class="price-feature">Audit complet infra/VSL/profil</div>
-                        <div class="price-feature">Accès réseau setters/closers</div>
-                        <div class="price-feature">Partenaires montage/fiscalité/ads inclus</div>
-                    </div>
-                </div>
-                <div class="price-card">
-                    <div class="price-header">
-                        <div class="price-amount">1 500€</div>
-                        <div class="price-detail">Accès plateforme uniquement</div>
-                    </div>
-                    <div class="price-features">
-                        <div class="price-feature">Plateforme + Slack + Lives à vie</div>
-                        <div class="price-feature">Tous les modules et ressources</div>
-                        <div class="price-feature">Communauté active</div>
-                        <div class="price-feature">Sans coaching 1-to-1</div>
-                        <div class="price-feature">Sans garantie résultats</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<div class="section">
+<div class="section-number">05</div>
+<h2 class="section-title">Résultats communauté</h2>
+<div class="results-grid">
+<div class="result-card">
+<div class="result-name">Manon</div>
+<div class="result-amount"><span class="count-up">150000</span>€</div>
+</div>
+<div class="result-card">
+<div class="result-name">Emmerick — janvier</div>
+<div class="result-amount"><span class="count-up">15000</span>€</div>
+</div>
+<div class="result-card">
+<div class="result-name">Emmerick + équipe — février</div>
+<div class="result-amount"><span class="count-up">19000</span>€</div>
+</div>
+<div class="result-card">
+<div class="result-name">Aurélie</div>
+<div class="result-amount"><span class="count-up">7000</span>€ en 1 semaine</div>
+</div>
+<div class="result-card">
+<div class="result-name">Nouvelle coach</div>
+<div class="result-amount"><span class="count-up">3300</span>€ en 1 mois (partie de 0)</div>
+</div>
+</div>
+<a href="https://drive.google.com/drive/folders/1fk6fHzGKUbFWrXez6Cm4EPabMdCrkd0V" target="_blank" class="btn btn-pill">Voir tous les témoignages</a>
+</div>
 
-        <div class="closing">
-            <h2>Alors Kevin, qu'est-ce que t'attends ?</h2>
-            <p>Tu sais où t'en es. Tu sais où tu veux aller. Tu sais ce qu'il reste à régler. Dans 6 mois, soit tu as relancé la machine et tu coaches sans te faire chier, soit t'es encore là, en pause, à te dire que tu vas t'y mettre. La seule chose qui change : la décision que tu prends maintenant.</p>
-            <a href="https://wa.me/33756288802?text=Bonjour%2C%20c%27est%20Kevin.%20J%27ai%20lu%20ma%20feuille%20de%20route%20et%20je%20veux%20%C3%A9changer." class="cta-btn" target="_blank">Je suis prêt, on lance</a>
-        </div>
+<div class="section">
+<div class="section-number">06</div>
+<h2 class="section-title">Ton accès</h2>
+<div class="pricing-grid">
+<div class="pricing-card featured">
+<div class="pricing-header">
+<div class="pricing-name">Accompagnement complet</div>
+<div class="pricing-amount">5000€</div>
+</div>
+<div class="pricing-features">
+<div class="pricing-feature">Plateforme + Slack + lives à vie</div>
+<div class="pricing-feature">3 mois coaching 1-to-1 hebdomadaire</div>
+<div class="pricing-feature">Plan d'action personnalisé chaque semaine</div>
+<div class="pricing-feature">Audit complet (VSL, tunnels, offre, contenu)</div>
+<div class="pricing-feature">Accompagnement recrutement setter/closer</div>
+<div class="pricing-feature">Garantie 3 000 – 10 000€/mois en 90 jours</div>
+</div>
+<div class="pricing-note">Paiement en 2 ou 3 fois possible</div>
+</div>
+<div class="pricing-card">
+<div class="pricing-header">
+<div class="pricing-name">Accès plateforme</div>
+<div class="pricing-amount">1500€</div>
+</div>
+<div class="pricing-features">
+<div class="pricing-feature">Plateforme + Slack + lives à vie</div>
+<div class="pricing-feature">Tous les modules, blueprints, scripts</div>
+<div class="pricing-feature">Coachings de groupe hebdo</div>
+<div class="pricing-feature">Communauté et réseau</div>
+</div>
+<div class="pricing-note">Sans coaching 1-to-1, sans garantie résultat</div>
+</div>
+</div>
+</div>
 
-        <footer>
-            L'Académie des Coachs · Document préparé pour Kevin Audefroy
-        </footer>
-    </div>
+<div class="closing">
+<h2 class="closing-title">Alors Kevin, qu'est-ce que t'attends ?</h2>
+<p class="closing-text">Tu sais où t'en es. Tu sais où tu veux aller. Tu sais ce qu'il reste à régler. Dans 6 mois, soit tu coaches tranquille avec une équipe qui tourne, soit t'es encore en train de galérer sur Instagram en te disant « j'aurais dû ». La seule chose qui change : la décision que tu prends maintenant.</p>
+<a href="https://wa.me/33756288802?text=Bonjour%2C%20c%27est%20Kevin.%20J%27ai%20lu%20ma%20feuille%20de%20route%20et%20je%20veux%20%C3%A9changer." target="_blank" class="btn btn-cta">Je suis prêt, on lance</a>
+</div>
+
+<div class="footer">
+L'Académie des Coachs · Document préparé pour Kevin AUDEFROY
+</div>
+</div>
+
+<script>
+function animateCountUp() {
+const counters = document.querySelectorAll('.count-up');
+counters.forEach(counter => {
+const target = parseInt(counter.innerText);
+const duration = 1500;
+const increment = target / (duration / 16);
+let current = 0;
+const timer = setInterval(() => {
+current += increment;
+if (current >= target) {
+counter.innerText = target.toLocaleString('fr-FR');
+clearInterval(timer);
+} else {
+counter.innerText = Math.floor(current).toLocaleString('fr-FR');
+}
+}, 16);
+});
+}
+
+const observerOptions = {
+threshold: 0.3,
+rootMargin: '0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+animateCountUp();
+observer.unobserve(entry.target);
+}
+});
+}, observerOptions);
+
+const resultsSection = document.querySelector('.results-grid');
+if (resultsSection) {
+observer.observe(resultsSection);
+}
+</script>
 </body>
 </html>
